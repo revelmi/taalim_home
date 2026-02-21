@@ -17,8 +17,8 @@
                 extend: {
                     colors: {
                         brand: {
-                            purple: '#4d1f95', // Exact solid purple requested
-                            yellow: '#fbc026', // Exact yellow requested
+                            purple: '#4d1f95',
+                            yellow: '#fbc026',
                             textGray: '#4B5563',
                         }
                     },
@@ -38,12 +38,10 @@
             scroll-behavior: smooth;
         }
 
-        /* 1. Hero Background - Solid Purple as requested */
         .hero-bg {
             background-color: #4d1f95; 
         }
 
-        /* Footer Background - Solid Purple as requested */
         .footer-bg {
             background-color: #4d1f95;
         }
@@ -73,14 +71,13 @@
             transform: translateY(-5px);
         }
 
-        /* WhatsApp Button Style */
         .floating-wa {
             position: fixed;
             bottom: 20px;
             left: 20px;
             width: 60px;
             height: 60px;
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -96,14 +93,13 @@
             transform: scale(1.1);
         }
 
-        /* Scroll To Top Button Style - Uses Brand Yellow */
         .scroll-top-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: #fbc026; /* Updated Yellow */
+            background-color: #fbc026;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -142,7 +138,6 @@
             font-size: 0.9rem;
         }
 
-        /* Custom Yellow Button Class */
         .btn-yellow {
             background-color: #fbc026;
             color: white;
@@ -167,11 +162,9 @@
 </head>
 <body class="antialiased text-gray-800">
 
-    <!-- Header / Navbar -->
     <header class="absolute top-0 left-0 right-0 z-50 text-white py-4 px-6 md:px-12 flex justify-between items-center bg-transparent" dir="rtl">
     </header>
 
-    <!-- Hero Section -->
     <section class="hero-bg text-white pt-32 pb-20 px-4 text-center relative overflow-hidden" id="home">
         <div class="max-w-4xl mx-auto space-y-6">
             <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
@@ -182,7 +175,6 @@
             </p>
 
             <div class="flex flex-col items-center justify-center gap-4 mt-8">
-                <!-- 3. Updated Hero Button: Link to external URL, New Tab -->
                 <a href="https://taalim.odoo.com/patisserie" target="_blank" class="btn-yellow font-bold py-4 px-10 rounded-full shadow-lg flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px] text-lg no-underline">
                     <span>تعرف على دوراتنا</span>
                     <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1 text-sm"></i>
@@ -191,12 +183,9 @@
         </div>
     </section>
 
-    <!-- Section 1: Pain Points -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center gap-12">
-                
-                <!-- Text Content (Right) -->
                 <div class="w-full md:w-1/2 order-1 md:order-1 text-right">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                         نحن نفهم <span class="text-brand-purple">تعبك…</span>
@@ -208,8 +197,6 @@
                         لأن المهارة ليست مجرد تعلم… بل فرصة دخل، واستقلال، وثقة في النفس. ابدأ اليوم، وامنح مستقبلك قيمة حقيقية.
                     </p>
                 </div>
-
-                <!-- Image Illustration (Left) -->
                 <div class="w-full md:w-1/2 order-2 md:order-2 flex justify-center circle-bg">
                     <img src="https://imgur.com/eZ3ZtjB.png" alt="Feeling confused" class="w-72 md:w-96 object-contain relative z-10">
                 </div>
@@ -217,17 +204,12 @@
         </div>
     </section>
 
-    <!-- Section 2: The Solution -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center gap-12">
-                
-                <!-- Image (Right) -->
                 <div class="w-full md:w-1/2 flex justify-center circle-bg">
                     <img src="https://imgur.com/h9iOFQg.png" alt="Solution found" class="w-72 md:w-96 object-contain relative z-10">
                 </div>
-
-                <!-- Text Content (Left) -->
                 <div class="w-full md:w-1/2 text-right">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                         نحن <span class="text-brand-purple">الحل</span> لطموحك المهني
@@ -239,23 +221,17 @@
                         من أول درس، تبدأ بالتطبيق. من أول خطوة، تشعر بالثقة. لأن تعلّم مهارة ليس خياراً إضافياً… بل هو طريق للاستقلال، للاستقرار، ولمستقبل أفضل. ونحن هنا لنضع هذا الطريق بين يديك.
                     </p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Section 3: Features -->
     <section class="py-24 bg-white">
         <div class="container mx-auto px-6 md:px-12 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-16">
                 لماذا دورتنا هي <span class="text-brand-purple">الأفضل؟</span>
             </h2>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Card 1 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
-                    <!-- Icon border updated to light purple, inside purple -->
                     <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
@@ -264,8 +240,6 @@
                         لا حاجة لحضور دروس في أوقات محددة، أنت من يقرر متى وأين تتعلم، بحرية تامة
                     </p>
                 </div>
-
-                <!-- Card 2 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
                     <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
@@ -275,8 +249,6 @@
                         سواء كنت مبتدئاً تماماً أو ترغب في تطوير مهاراتك وصقل خبرتك، ستجد البرنامج المناسب الذي ينقلك خطوة بخطوة نحو الاحتراف بثقة وتمكن.
                     </p>
                 </div>
-
-                <!-- Card 3 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
                     <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
@@ -286,38 +258,34 @@
                         نحن نؤمن بجودة دورتنا، ولهذا نقدم لك ضمان 7 أيام - إذا لم تعجبك، نعيد لك مالك بدون أي سؤال
                     </p>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- Section 4: Contact Form -->
     <section class="py-20 bg-white">
         <div class="container mx-auto px-4 max-w-4xl">
-            
             <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
                 تواصل معنا لمعرفة المزيد من التفاصيل
             </h2>
 
             <div class="bg-gray-50 p-8 md:p-12 rounded-3xl shadow-sm">
-                <!-- Added ID for JavaScript -->
-                <form class="space-y-4" id="contactForm">
+                <!-- تم الاحتفاظ بأسماء الحقول (name) كما هي لأنها مهمة لجوجل شيت -->
+                <form class="space-y-4" id="googleSheetForm">
                     <div>
-                        <input type="text" id="name" placeholder="الاسم الكامل" class="form-input" required>
+                        <input type="text" id="name" name="name" placeholder="الاسم الكامل" class="form-input" required>
                     </div>
                     <div>
-                        <input type="email" id="email" placeholder="البريد الإلكتروني" class="form-input" required>
+                        <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" class="form-input" required>
                     </div>
                     <div>
-                        <input type="tel" id="whatsapp" placeholder="رقم الواتساب" class="form-input" required>
+                        <input type="tel" id="whatsapp" name="whatsapp" placeholder="رقم الواتساب" class="form-input" required>
                     </div>
-                    
                     <div>
-                        <input type="text" id="course" placeholder="ما الدورة التي تريد تعلمها؟" class="form-input" required>
+                        <input type="text" id="course" name="course" placeholder="ما الدورة التي تريد تعلمها؟" class="form-input" required>
                     </div>
 
                     <div class="pt-4">
-                        <button type="submit" class="w-full bg-[#6a4ce0] hover:bg-brand-purple text-white font-bold py-3 rounded-lg transition duration-300">
+                        <button type="submit" id="submitBtn" class="w-full bg-[#6a4ce0] hover:bg-brand-purple text-white font-bold py-3 rounded-lg transition duration-300">
                             إرسال
                         </button>
                     </div>
@@ -326,12 +294,8 @@
         </div>
     </section>
 
-    <!-- Footer - Solid Purple #4d1f95 -->
     <footer class="footer-bg text-white py-12 border-t border-white/10 relative">
-        
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
-            
-            <!-- Logo Smaller Size (h-12) -->
             <div class="mb-8 text-center">
                 <img src="https://imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-12 object-contain brightness-0 invert">
             </div>
@@ -346,7 +310,6 @@
                 Copyright © Taalim Academy.
             </div>
 
-            <!-- Social Icons (Hover updated to new Yellow) -->
             <div class="flex gap-4">
                 <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-yellow transition text-white">
                     <i class="fa-brands fa-youtube text-sm"></i>
@@ -364,54 +327,49 @@
         </div>
     </footer>
 
-    <!-- Floating Action Button (WhatsApp) -->
-    <!-- REPLACE 123456789 WITH YOUR ACTUAL NUMBER -->
-    <a href="https://wa.me/123456789" target="_blank" class="floating-wa">
+    <!-- أيقونة الواتساب العائمة: تم تحديث الرقم والرسالة -->
+    <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9" target="_blank" class="floating-wa">
         <i class="fa-brands fa-whatsapp text-white text-4xl"></i>
     </a>
 
-    <!-- Scroll To Top Button -->
     <button onclick="scrollToTop()" id="scrollTopBtn" class="scroll-top-btn">
         <i class="fa-solid fa-chevron-up text-white text-xl"></i>
     </button>
 
-    <!-- JavaScript for Excel Export and Scroll -->
     <script>
-        // --- Excel/CSV Export Functionality ---
-        // 4. Form Submission Logic
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+        // --- Google Sheets Connection Logic ---
+        
+        // ********** تم وضع رابط Web App الخاص بك هنا **********
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby1caXr7AgTQRSTpr9Pi3FlOCU1dtGVaGzWfsyISXw7QNLxfk3_yF9B0yKaZRTs1wM3FQ/exec'; 
+        // ******************************************************
 
-            // Get values
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var whatsapp = document.getElementById('whatsapp').value;
-            var course = document.getElementById('course').value;
+        const form = document.getElementById('googleSheetForm');
+        const submitBtn = document.getElementById('submitBtn');
 
-            // Create CSV content (BOM for Arabic support)
-            // The columns match the request: Name, Email, Whatsapp, Course
-            var csvContent = "\uFEFF"; 
-            csvContent += "الاسم الكامل,البريد الإلكتروني,رقم الواتساب,ما الدورة التي تريد تعلمها؟\n";
-            csvContent += `"${name}","${email}","${whatsapp}","${course}"\n`;
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerText = "جاري الإرسال...";
 
-            // Create a blob and link to download
-            var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            var url = URL.createObjectURL(blob);
-            var link = document.createElement("a");
-            link.setAttribute("href", url);
-            // Filename that indicates this is data for the sheet
-            link.setAttribute("download", "taalim_academy_registrations.csv");
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-
-            alert("تم حفظ البيانات! يرجى فتح ملف الإكسيل الذي تم تحميله.");
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("تم إرسال بياناتك بنجاح! سنتواصل معك قريباً.");
+                    form.reset(); // Clear form
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "إرسال";
+                })
+                .catch(error => {
+                    alert("حدث خطأ! يرجى المحاولة مرة أخرى.");
+                    console.error('Error!', error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "إرسال";
+                });
         });
 
         // --- Scroll To Top Functionality ---
         var scrollBtn = document.getElementById("scrollTopBtn");
-
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 scrollBtn.classList.add("show");
@@ -419,7 +377,6 @@
                 scrollBtn.classList.remove("show");
             }
         };
-
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
