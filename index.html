@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yassine Academy - ياسين أكاديمي</title>
+    <title>Yassine Academy</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Cairo (closest match to the screenshot) -->
+    <!-- Google Fonts: Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <script>
@@ -17,8 +17,8 @@
                 extend: {
                     colors: {
                         brand: {
-                            purple: '#4d1f95', // User essential color
-                            lightPurple: '#6a4ce0', // Lighter gradient stop
+                            purple: '#4d1f95',
+                            lightPurple: '#6a4ce0',
                             orange: '#F59E0B',
                             orangeHover: '#d97706',
                             textGray: '#4B5563',
@@ -33,21 +33,17 @@
     </script>
 
     <style>
-        /* Custom Styles for exact visual matching */
         body {
             font-family: 'Cairo', sans-serif;
             background-color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Hero Gradient */
         .hero-bg {
             background: linear-gradient(135deg, #6a4ce0 0%, #4d1f95 100%);
-            /* Fallback to user color */
             background-color: #4d1f95; 
         }
 
-        /* Circular Image Backgrounds */
         .circle-bg {
             position: relative;
             z-index: 1;
@@ -60,12 +56,11 @@
             transform: translate(-50%, -50%);
             width: 350px;
             height: 350px;
-            background-color: #f9fafb; /* Very light gray */
+            background-color: #f9fafb;
             border-radius: 50%;
             z-index: -1;
         }
 
-        /* Feature Card Shadow */
         .feature-card {
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
@@ -74,11 +69,10 @@
             transform: translateY(-5px);
         }
 
-        /* Floating WhatsApp Button (GetButton style) */
         .floating-wa {
             position: fixed;
             bottom: 20px;
-            left: 20px; /* Visually left */
+            left: 20px;
             width: 60px;
             height: 60px;
             background-color: #fbbf24;
@@ -92,7 +86,6 @@
             border: 2px solid white;
         }
 
-        /* Form styling */
         .form-input {
             border: 1px solid #e5e7eb;
             border-radius: 8px;
@@ -110,7 +103,6 @@
             font-size: 0.9rem;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -126,61 +118,40 @@
 <body class="antialiased text-gray-800">
 
     <!-- Header / Navbar -->
+    <!-- Content removed as requested (Logo and Hamburger Menu), keeping container for layout integrity if needed -->
     <header class="absolute top-0 left-0 right-0 z-50 text-white py-4 px-6 md:px-12 flex justify-between items-center bg-transparent" dir="rtl">
-        <!-- Hamburger Menu (Left in LTR, Right in RTL visually, but in code it follows flex) -->
-        <!-- In RTL flex, first item is Right. But screenshot shows Menu on Left and Logo on Right.
-             So we need Logo first in DOM (Right) and Menu last (Left). -->
-        
-        <!-- Logo Area -->
-        <div class="flex items-center gap-2">
-            <!-- Simplified Logo placeholder based on visual -->
-            <div class="text-2xl font-bold flex items-center gap-2">
-                <i class="fa-solid fa-graduation-cap text-3xl"></i>
-                <div class="flex flex-col leading-none">
-                    <span class="text-lg font-bold">YASSINE</span>
-                    <span class="text-xs tracking-wider">ACADEMY</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Menu Icon -->
-        <button class="text-white text-2xl focus:outline-none">
-            <i class="fa-solid fa-bars"></i>
-        </button>
     </header>
 
     <!-- Hero Section -->
     <section class="hero-bg text-white pt-32 pb-20 px-4 text-center relative overflow-hidden">
         <div class="max-w-4xl mx-auto space-y-6">
+            <!-- Modification A -->
             <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
-                ياسين أكاديمي لتعلم اللغات الأجنبية
+                تعلم… طبّق… احترف.
             </h1>
+            <!-- Modification B -->
             <p class="text-base md:text-lg text-gray-100 max-w-3xl mx-auto leading-relaxed opacity-90">
-                اكتشف مجموعة دوراتنا المتكاملة في اللغة الإنجليزية والإسبانية والفرنسية و استمتع بتجربة تعلم غنية بالمحتوى التفاعلي الذي يعزز قدراتك في التحدث!
+                اكتشف مجموعة دوراتنا التطبيقية في الطبخ، الباتسري، المحاسبة، والحرف المطلوبة في سوق العمل، وابدأ رحلتك نحو مهارة حقيقية تفتح لك أبواب العمل والاستقلال المهني.
             </p>
 
             <div class="flex flex-col items-center justify-center gap-4 mt-8">
-                <!-- Spanish Button -->
+                <!-- Buttons (Text unchanged as no replacement text was provided for them) -->
                 <button class="bg-brand-orange hover:bg-brand-orangeHover text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px]">
                     <span>تعرف على دورة اللغة الإسبانية</span>
                     <i class="fa-solid fa-arrow-left bg-white text-brand-orange rounded-full p-1 text-xs"></i>
                 </button>
 
-                <!-- English Button -->
                 <button class="bg-brand-orange hover:bg-brand-orangeHover text-white font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px]">
                     <span>تعرف على دورة اللغة الإنجليزية</span>
                     <i class="fa-solid fa-arrow-left bg-white text-brand-orange rounded-full p-1 text-xs"></i>
                 </button>
 
-                <!-- Login Button -->
                 <button class="bg-transparent border-2 border-white/50 hover:bg-white/10 text-white font-bold py-3 px-8 rounded-full transition w-full md:w-auto justify-center min-w-[300px] flex items-center gap-3">
                     <span>تسجيل الدخول</span>
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
         </div>
-        
-        <!-- Bottom Wave/Shape Divider can be added here if exact SVG path was known, but simple padding works for this layout -->
     </section>
 
     <!-- Section 1: Pain Points -->
@@ -188,22 +159,22 @@
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 
-                <!-- Text Content (Right side in RTL) -->
+                <!-- Text Content -->
                 <div class="w-full md:w-1/2 order-1 md:order-1 text-right">
+                    <!-- Modification C -->
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        نحن نشعر <span class="text-brand-lightPurple">بألمك...</span>
+                        نحن نفهم تعبك…
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
-                        هل جربت يوماً أن تكون في بلد جديد، تحتاج إلى التحدث، إلى الفهم، إلى التعبير عن نفسك، لكن الكلمات تخونك؟ تقف في طابور طويل لإنهاء أوراقك، يسمعك الموظف، لكن لا يفهمك. تبحث عن عمل، لكن كل مقابلة تنتهي بجملة واحدة: "عذراً، لا تتحدث اللغة."
+                        هل تبحث عن مهارة حقيقية تفتح لك باب العمل أو تساعدك على بدء مشروعك الخاص؟ في أكاديميتنا نقدم دورات تطبيقية في الطبخ، الباتسري، المحاسبة والحرف العملية، مصممة لتمنحك خبرة واضحة يمكنك استخدامها فورًا في الواقع.
                     </p>
                     <p class="text-gray-600 leading-8 text-justify">
-                        "عذراً، لا تتحدث اللغة" تشعر وكأنك سجين في عالم لا تفهمه. تُحيط بك الأصوات لكنك لا تستطيع الرد، تتحرك الحياة من حولك وأنت عالق بين الصمت والعجز. اللغة ليست مجرد كلمات، إنها جسر يصل بك إلى الفرص، إلى العلاقات، إلى حياة جديدة تستحقها.
+                        لأن المهارة ليست مجرد تعلم… بل فرصة دخل، واستقلال، وثقة في النفس. ابدأ اليوم، وامنح مستقبلك قيمة حقيقية.
                     </p>
                 </div>
 
-                <!-- Image Illustration (Left side in RTL) -->
+                <!-- Image Illustration -->
                 <div class="w-full md:w-1/2 order-2 md:order-2 flex justify-center circle-bg">
-                    <!-- Placeholder for the "Tangled Head" illustration -->
                     <img src="https://cdni.iconscout.com/illustration/premium/thumb/confused-man-illustration-download-in-svg-png-gif-file-formats--dizzy-confusion-dizziness-pack-people-illustrations-4860645.png" alt="Feeling confused" class="w-72 md:w-96 object-contain relative z-10">
                 </div>
             </div>
@@ -215,39 +186,29 @@
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 
-                <!-- Image Illustration (Right visual, but Left in DOM flow? No, in RTL flow: 
-                     If we want Image Left and Text Right visually:
-                     RTL: [Item 1] [Item 2] -> Item 1 is Right, Item 2 is Left.
-                     So Text should be Item 1. -->
-                
-                <!-- Wait, looking at screenshot: "We are the solution" section:
-                     Image is on the LEFT. Text is on the RIGHT.
-                     In RTL Flex Row: First child is Right. Second child is Left.
-                     So: Text div first, Image div second. -->
-                     
-                 <!-- Text Content -->
+                <!-- Text Content -->
                 <div class="w-full md:w-1/2 text-right">
+                    <!-- Modification D -->
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        نحن <span class="text-brand-lightPurple">الحل</span> لكل مشاكلك
+                        نحن الحل لطموحك المهني
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
-                        في ياسين أكاديمي، نحن لا نعلمك اللغة فقط، بل نساعدك على استخدامها في حياتك اليومية بثقة. تعرف أنك لا تحتاج إلى دروس نظرية معقدة، بل إلى كلمات تفهمها وتستطيع نطقها بسهولة، إلى جمل تساعدك في العمل، في السوق، في المستشفى، وفي كل موقف تواجهه.
+                        في أكاديميتنا، نحن لا نمنحك دروساً نظرية فقط، بل نمنحك مهارة حقيقية تستطيع استخدامها في حياتك اليومية. نعرف أنك لا تحتاج إلى معلومات معقدة، بل إلى خطوات واضحة، تطبيق عملي، ونتائج ملموسة تستطيع تحويلها إلى دخل وفرصة عمل. لهذا صممنا دوراتنا في الطبخ، الباتسري، المحاسبة والحرف بأسلوب تطبيقي مباشر، يعتمد على التمرين، التجربة، والعمل الواقعي.
                     </p>
                     <p class="text-gray-600 leading-8 text-justify">
-                        لهذا، صممنا طريقة تعليم عملية تعتمد على العبارات الأكثر استخداماً، التمارين التفاعلية، والمواقف الواقعية. حتى تبدأ في التحدث من اليوم الأول، مع دعم مستمر وإرشاد واضح، ستجد نفسك تفهم، ترد، وتتكلم دون خوف. لأن تعلم اللغة ليس رفاهية، بل مفتاح لحياة جديدة.. ونحن هنا لمنحك هذا المفتاح.
+                        من أول درس، تبدأ بالتطبيق. من أول خطوة، تشعر بالثقة. لأن تعلّم مهارة ليس خياراً إضافياً… بل هو طريق للاستقلال، للاستقرار، ولمستقبل أفضل. ونحن هنا لنضع هذا الطريق بين يديك.
                     </p>
                 </div>
 
                 <!-- Image -->
                 <div class="w-full md:w-1/2 flex justify-center circle-bg">
-                    <!-- Placeholder for "Idea/Solution" illustration -->
                     <img src="https://cdni.iconscout.com/illustration/premium/thumb/man-got-an-idea-illustration-download-in-svg-png-gif-file-formats--thinking-bulb-smart-business-activities-pack-people-illustrations-3866162.png" alt="Solution found" class="w-72 md:w-96 object-contain relative z-10">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section 3: Features (Why Us?) -->
+    <!-- Section 3: Features -->
     <section class="py-24 bg-white">
         <div class="container mx-auto px-6 md:px-12 text-center">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-16">
@@ -267,14 +228,14 @@
                     </p>
                 </div>
 
-                <!-- Card 2 -->
+                <!-- Card 2 (Modified E) -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
                     <div class="w-16 h-16 rounded-full border-2 border-brand-lightPurple flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">أربعة مستويات</h3>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">مستويات متعددة تناسب الجميع</h3>
                     <p class="text-gray-500 text-sm leading-6">
-                        سواء كنت مبتدئاً تماماً أو تريد تحسين مستواك، ستجد كل ما تحتاجه للوصول إلى الطلاقة بثقة
+                        سواء كنت مبتدئاً تماماً أو ترغب في تطوير مهاراتك وصقل خبرتك، ستجد البرنامج المناسب الذي ينقلك خطوة بخطوة نحو الاحتراف بثقة وتمكن.
                     </p>
                 </div>
 
@@ -313,22 +274,19 @@
 
             <div class="bg-gray-50 p-8 md:p-12 rounded-3xl shadow-sm">
                 <form class="space-y-4">
-                    <!-- Name -->
                     <div>
                         <input type="text" placeholder="الاسم الكامل" class="form-input">
                     </div>
-                    <!-- Email -->
                     <div>
                         <input type="email" placeholder="البريد الإلكتروني" class="form-input">
                     </div>
-                    <!-- WhatsApp -->
                     <div>
                         <input type="tel" placeholder="رقم الواتساب" class="form-input">
                     </div>
-                    <!-- Language Selection -->
+                    <!-- Language Selection (Modified F) -->
                     <div class="relative">
                         <select class="form-input appearance-none text-gray-500 bg-white cursor-pointer">
-                            <option value="" disabled selected>ما اللغة التي تريد تعلمها؟</option>
+                            <option value="" disabled selected>ما الدورة التي تريد تعلمها؟</option>
                             <option value="english">الإنجليزية</option>
                             <option value="spanish">الإسبانية</option>
                             <option value="french">الفرنسية</option>
@@ -337,12 +295,10 @@
                             <i class="fa-solid fa-chevron-down text-xs"></i>
                         </div>
                     </div>
-                    <!-- Country -->
                     <div>
                         <input type="text" placeholder="الدولة التي تقيم فيها" class="form-input">
                     </div>
 
-                    <!-- Submit Button -->
                     <div class="pt-4">
                         <button type="submit" class="w-full bg-[#6a4ce0] hover:bg-brand-purple text-white font-bold py-3 rounded-lg transition duration-300">
                             إرسال
@@ -355,12 +311,10 @@
 
     <!-- Footer -->
     <footer class="bg-[#5840c8] text-white py-12 border-t border-white/10 relative">
-        <!-- Exact color matching footer from screenshot is roughly the Hero gradient start or similar -->
         <div class="absolute inset-0 bg-gradient-to-r from-[#6a4ce0] to-[#4d1f95] opacity-90"></div>
         
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
             
-            <!-- Logo White -->
             <div class="mb-8 text-center">
                 <div class="text-white text-3xl font-bold flex flex-col items-center">
                      <i class="fa-solid fa-graduation-cap text-4xl mb-2"></i>
@@ -369,19 +323,16 @@
                 </div>
             </div>
 
-            <!-- Links -->
             <div class="flex flex-wrap justify-center gap-6 md:gap-8 text-xs md:text-sm font-semibold mb-8 uppercase tracking-wider text-white/80">
                 <a href="#" class="hover:text-white transition">TERMS & CONDITION</a>
                 <a href="#" class="hover:text-white transition">SUPPORT</a>
                 <a href="#" class="hover:text-white transition">PRIVACY POLICY</a>
             </div>
 
-            <!-- Copyright -->
             <div class="text-xs text-white/60 mb-6">
                 Copyright © Yassine Academy
             </div>
 
-            <!-- Social Icons -->
             <div class="flex gap-4">
                 <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-orange transition text-white">
                     <i class="fa-brands fa-youtube text-sm"></i>
@@ -399,15 +350,7 @@
         </div>
     </footer>
 
-    <!-- Floating Action Button (Mouse/WhatsApp Icon) -->
-    <!-- The screenshot shows a yellow icon on the LEFT side (or Right in LTR) -->
     <div class="floating-wa">
-        <!-- Using a mouse icon as seen in screenshot or similar generic icon -->
-        <i class="fa-solid fa-mouse text-white text-2xl transform rotate-180" style="color: #333;"></i> 
-        <!-- The icon in screenshot looks like a mouse or a chat bubble. 
-             If it's GetButton.io, it's usually WhatsApp. But visually it looks like a mouse in the screenshot provided? 
-             Wait, zoomed in, it looks like a computer mouse or a generic chat icon. 
-             I'll use a chat/comment icon to be safe, but style it yellow. -->
         <i class="fa-solid fa-comment-dots absolute text-gray-800 text-2xl"></i>
     </div>
 
