@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taalim Academy</title>
+    <title>Taalim Academy - الرئيسية</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome -->
@@ -47,6 +47,7 @@
         }
         .feature-card { box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); transition: transform 0.3s ease; }
         .feature-card:hover { transform: translateY(-5px); }
+        
         .floating-wa {
             position: fixed; bottom: 20px; left: 20px; width: 60px; height: 60px;
             background-color: #25D366; border-radius: 50%; display: flex;
@@ -55,6 +56,7 @@
             text-decoration: none;
         }
         .floating-wa:hover { transform: scale(1.1); }
+        
         .scroll-top-btn {
             position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px;
             background-color: #fbc026; border-radius: 12px; display: flex;
@@ -64,6 +66,7 @@
         }
         .scroll-top-btn.show { opacity: 1; visibility: visible; }
         .scroll-top-btn:hover { background-color: #e0ac20; transform: translateY(-3px); }
+        
         .form-input {
             border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 16px;
             width: 100%; outline: none; transition: border-color 0.2s; text-align: right;
@@ -72,7 +75,17 @@
         .btn-yellow { background-color: #fbc026; color: white; transition: all 0.3s; }
         .btn-yellow:hover { background-color: #e0ac20; transform: scale(1.05); }
 
-        /* تنسيق رسالة النجاح والفشل */
+        /* Mobile Menu */
+        #mobileMenu {
+            transition: max-height 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        #mobileMenu.open {
+            max-height: 300px; /* Adjust based on menu items */
+        }
+
+        /* تنسيق رسائل الفورم */
         #responseMessage { display: none; margin-top: 15px; padding: 10px; border-radius: 8px; text-align: center; font-weight: bold; }
         .success-msg { color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; }
         .error-msg { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; }
@@ -80,17 +93,43 @@
 </head>
 <body class="antialiased text-gray-800">
 
-    <section class="hero-bg text-white pt-32 pb-20 px-4 text-center relative overflow-hidden" id="home">
-        <div class="max-w-4xl mx-auto space-y-6">
+    <!-- Header / Navbar -->
+    <header class="absolute top-0 left-0 right-0 z-50 py-6 px-6 md:px-12">
+        <div class="flex justify-between items-center">
+            
+            <!-- زر القائمة (يمين) -->
+            <button id="menuBtn" class="text-white text-3xl focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <!-- اللوغو (يسار) -->
+            <div>
+                <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-10 md:h-12 object-contain brightness-0 invert">
+            </div>
+        </div>
+
+        <!-- القائمة المنسدلة -->
+        <nav id="mobileMenu" class="bg-white rounded-lg shadow-xl mt-4 absolute right-6 left-6 z-50">
+            <ul class="flex flex-col text-right p-4 space-y-3 font-bold text-brand-purple">
+                <li><a href="index.html" class="block hover:text-brand-yellow transition">الرئيسية</a></li>
+                <li><a href="courses.html" class="block hover:text-brand-yellow transition">دوراتنا</a></li>
+                <li><a href="#about" class="block hover:text-brand-yellow transition">من نحن</a></li>
+                <li><a href="#contact" class="block hover:text-brand-yellow transition">اتصل بنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section (تم تكبير الطول) -->
+    <section class="hero-bg text-white pt-48 pb-32 px-4 text-center relative overflow-hidden" id="home">
+        <div class="max-w-4xl mx-auto space-y-8">
             <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">
                 تعلم… طبّق… احترف.
             </h1>
             <p class="text-base md:text-lg text-gray-100 max-w-3xl mx-auto leading-relaxed opacity-90">
-                اكتشف مجموعة دوراتنا التطبيقية في الطبخ، الباتسري، المحاسبة، والحرف المطلوبة في سوق العمل، وابدأ رحلتك نحو مهارة حقيقية تفتح لك أبواب العمل والاستقلال المهني.
+                اكتشف مجموعة دوراتنا التطبيقية في الطبخ، الباتسري، المحاسبة، والحرف المطلوبة في سوق العمل.
             </p>
 
-            <div class="flex flex-col items-center justify-center gap-4 mt-8">
-                <!-- تم التعديل هنا لربط الصفحة الجديدة -->
+            <div class="flex flex-col items-center justify-center gap-4 mt-10">
                 <a href="courses.html" class="btn-yellow font-bold py-4 px-10 rounded-full shadow-lg flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px] text-lg no-underline">
                     <span>تعرف على دوراتنا</span>
                     <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1 text-sm"></i>
@@ -99,21 +138,19 @@
         </div>
     </section>
 
-    <section class="py-20 bg-white">
+    <!-- باقي الأقسام كما هي -->
+    <section class="py-20 bg-white" id="about">
         <div class="container mx-auto px-6 md:px-12">
             <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2 order-1 md:order-1 text-right">
+                <div class="w-full md:w-1/2 order-1 text-right">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
                         نحن نفهم <span class="text-brand-purple">تعبك…</span>
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
-                        هل تبحث عن مهارة حقيقية تفتح لك باب العمل أو تساعدك على بدء مشروعك الخاص؟ في أكاديميتنا نقدم دورات تطبيقية في الطبخ، الباتسري، المحاسبة والحرف العملية، مصممة لتمنحك خبرة واضحة يمكنك استخدامها فورًا في الواقع.
-                    </p>
-                    <p class="text-gray-600 leading-8 text-justify">
-                        لأن المهارة ليست مجرد تعلم… بل فرصة دخل، واستقلال، وثقة في النفس. ابدأ اليوم، وامنح مستقبلك قيمة حقيقية.
+                        هل تبحث عن مهارة حقيقية تفتح لك باب العمل؟ في أكاديميتنا نقدم دورات تطبيقية مصممة لتمنحك خبرة واضحة.
                     </p>
                 </div>
-                <div class="w-full md:w-1/2 order-2 md:order-2 flex justify-center circle-bg">
+                <div class="w-full md:w-1/2 order-2 flex justify-center circle-bg">
                     <img src="https://imgur.com/eZ3ZtjB.png" alt="Feeling confused" class="w-72 md:w-96 object-contain relative z-10">
                 </div>
             </div>
@@ -131,7 +168,7 @@
                         نحن <span class="text-brand-purple">الحل</span> لطموحك المهني
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
-                        في أكاديميتنا، نحن لا نمنحك دروساً نظرية فقط، بل نمنحك مهارة حقيقية تستطيع استخدامها في حياتك اليومية. نعرف أنك لا تحتاج إلى معلومات معقدة، بل إلى خطوات واضحة، تطبيق عملي، ونتائج ملموسة تستطيع تحويلها إلى دخل وفرصة عمل. لهذا صممنا دوراتنا في الطبخ، الباتسري، المحاسبة والحرف بأسلوب تطبيقي مباشر، يعتمد على التمرين، التجربة، والعمل الواقعي.
+                        في أكاديميتنا، نمنحك مهارة حقيقية وخطوات واضحة وتطبيق عملي من أول درس.
                     </p>
                 </div>
             </div>
@@ -149,27 +186,27 @@
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">تعلم أينما كنت</h3>
-                    <p class="text-gray-500 text-sm leading-6">لا حاجة لحضور دروس في أوقات محددة، أنت من يقرر متى وأين تتعلم، بحرية تامة</p>
+                    <p class="text-gray-500 text-sm leading-6">أنت من يقرر متى وأين تتعلم، بحرية تامة</p>
                 </div>
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
                     <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">مستويات متعددة تناسب الجميع</h3>
-                    <p class="text-gray-500 text-sm leading-6">سواء كنت مبتدئاً تماماً أو ترغب في تطوير مهاراتك وصقل خبرتك، ستجد البرنامج المناسب.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">مستويات متعددة</h3>
+                    <p class="text-gray-500 text-sm leading-6">برامج تناسب المبتدئين والمحترفين.</p>
                 </div>
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
                     <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">ضمان 7 أيام</h3>
-                    <p class="text-gray-500 text-sm leading-6">نحن نؤمن بجودة دورتنا، ولهذا نقدم لك ضمان 7 أيام - إذا لم تعجبك، نعيد لك مالك.</p>
+                    <p class="text-gray-500 text-sm leading-6">إذا لم تعجبك الدورة، نعيد لك مالك.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-white">
+    <section class="py-20 bg-white" id="contact">
         <div class="container mx-auto px-4 max-w-4xl">
             <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
                 تواصل معنا لمعرفة المزيد من التفاصيل
@@ -192,9 +229,7 @@
 
     <footer class="footer-bg text-white py-12 border-t border-white/10 relative">
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
-            <div class="mb-8 text-center">
-                <img src="https://imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-12 object-contain brightness-0 invert">
-            </div>
+            <img src="https://imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-12 object-contain brightness-0 invert mb-8">
             <div class="text-xs text-white/60 mb-6">Copyright © Taalim Academy.</div>
         </div>
     </footer>
@@ -208,6 +243,14 @@
     </button>
 
     <script>
+        // Toggle Mobile Menu
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Google Sheets Script
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzAbybazS1ugGhJwB9oT5LoZEC2ywjXl0PVyMmmJo8kmrR8iY5Vtz40wFaQofYorVfGCg/exec'; 
         const form = document.getElementById('googleSheetForm');
         const submitBtn = document.getElementById('submitBtn');
