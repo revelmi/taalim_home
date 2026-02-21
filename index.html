@@ -148,6 +148,26 @@
             transform: scale(1.05);
         }
 
+        /* تنسيق رسالة النجاح والفشل */
+        #responseMessage {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .success-msg {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+        .error-msg {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -269,7 +289,7 @@
             </h2>
 
             <div class="bg-gray-50 p-8 md:p-12 rounded-3xl shadow-sm">
-                <!-- تم الاحتفاظ بأسماء الحقول (name) كما هي لأنها مهمة لجوجل شيت -->
+                
                 <form class="space-y-4" id="googleSheetForm">
                     <div>
                         <input type="text" id="name" name="name" placeholder="الاسم الكامل" class="form-input" required>
@@ -289,6 +309,9 @@
                             إرسال
                         </button>
                     </div>
+
+                    <!-- مكان ظهور رسالة النجاح أو الفشل -->
+                    <div id="responseMessage"></div>
                 </form>
             </div>
         </div>
@@ -327,7 +350,7 @@
         </div>
     </footer>
 
-    <!-- أيقونة الواتساب العائمة: تم تحديث الرقم والرسالة -->
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9" target="_blank" class="floating-wa">
         <i class="fa-brands fa-whatsapp text-white text-4xl"></i>
     </a>
@@ -339,32 +362,45 @@
     <script>
         // --- Google Sheets Connection Logic ---
         
-        // ********** تم وضع رابط Web App الخاص بك هنا **********
+        // ********** الرابط الخاص بك **********
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzAbybazS1ugGhJwB9oT5LoZEC2ywjXl0PVyMmmJo8kmrR8iY5Vtz40wFaQofYorVfGCg/exec'; 
         // ******************************************************
 
         const form = document.getElementById('googleSheetForm');
         const submitBtn = document.getElementById('submitBtn');
+        const responseMessage = document.getElementById('responseMessage');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
             
-            // Show loading state
+            // إخفاء أي رسالة سابقة
+            responseMessage.style.display = 'none';
+            responseMessage.className = '';
+            
+            // حالة التحميل
             submitBtn.disabled = true;
             submitBtn.innerText = "جاري الإرسال...";
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert("تم إرسال بياناتك بنجاح! سنتواصل معك قريباً.");
-                    form.reset(); // Clear form
+                    // النجاح: إظهار الرسالة الخضراء
+                    form.reset(); 
                     submitBtn.disabled = false;
                     submitBtn.innerText = "إرسال";
+                    
+                    responseMessage.innerText = "تم إرسال بياناتك بنجاح! سنتواصل معك قريباً.";
+                    responseMessage.classList.add('success-msg');
+                    responseMessage.style.display = 'block';
                 })
                 .catch(error => {
-                    alert("حدث خطأ! يرجى المحاولة مرة أخرى.");
+                    // الفشل: إظهار الرسالة الحمراء
                     console.error('Error!', error.message);
                     submitBtn.disabled = false;
                     submitBtn.innerText = "إرسال";
+
+                    responseMessage.innerText = "حدث خطأ! يرجى المحاولة مرة أخرى.";
+                    responseMessage.classList.add('error-msg');
+                    responseMessage.style.display = 'block';
                 });
         });
 
@@ -384,4 +420,3 @@
 
 </body>
 </html>
-
