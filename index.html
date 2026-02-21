@@ -17,10 +17,8 @@
                 extend: {
                     colors: {
                         brand: {
-                            purple: '#4d1f95',
-                            lightPurple: '#6a4ce0',
-                            orange: '#F59E0B',
-                            orangeHover: '#d97706',
+                            purple: '#4d1f95', // Exact solid purple requested
+                            yellow: '#fbc026', // Exact yellow requested
                             textGray: '#4B5563',
                         }
                     },
@@ -40,9 +38,14 @@
             scroll-behavior: smooth;
         }
 
+        /* 1. Hero Background - Solid Purple as requested */
         .hero-bg {
-            background: linear-gradient(135deg, #6a4ce0 0%, #4d1f95 100%);
             background-color: #4d1f95; 
+        }
+
+        /* Footer Background - Solid Purple as requested */
+        .footer-bg {
+            background-color: #4d1f95;
         }
 
         .circle-bg {
@@ -93,15 +96,15 @@
             transform: scale(1.1);
         }
 
-        /* Scroll To Top Button Style */
+        /* Scroll To Top Button Style - Uses Brand Yellow */
         .scroll-top-btn {
             position: fixed;
             bottom: 20px;
             right: 20px;
             width: 50px;
             height: 50px;
-            background-color: #F59E0B; /* Brand Orange/Yellow */
-            border-radius: 12px; /* Slightly rounded square */
+            background-color: #fbc026; /* Updated Yellow */
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -118,7 +121,7 @@
             visibility: visible;
         }
         .scroll-top-btn:hover {
-            background-color: #d97706;
+            background-color: #e0ac20;
             transform: translateY(-3px);
         }
 
@@ -137,6 +140,17 @@
         .form-input::placeholder {
             color: #9ca3af;
             font-size: 0.9rem;
+        }
+
+        /* Custom Yellow Button Class */
+        .btn-yellow {
+            background-color: #fbc026;
+            color: white;
+            transition: all 0.3s;
+        }
+        .btn-yellow:hover {
+            background-color: #e0ac20;
+            transform: scale(1.05);
         }
 
         ::-webkit-scrollbar {
@@ -168,11 +182,11 @@
             </p>
 
             <div class="flex flex-col items-center justify-center gap-4 mt-8">
-                <!-- Single Button as requested -->
-                <button class="bg-brand-orange hover:bg-brand-orangeHover text-white font-bold py-4 px-10 rounded-full shadow-lg transition transform hover:scale-105 flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px] text-lg">
+                <!-- 3. Updated Hero Button: Link to external URL, New Tab -->
+                <a href="https://taalim.odoo.com/patisserie" target="_blank" class="btn-yellow font-bold py-4 px-10 rounded-full shadow-lg flex items-center gap-3 w-full md:w-auto justify-center min-w-[300px] text-lg no-underline">
                     <span>تعرف على دوراتنا</span>
-                    <i class="fa-solid fa-arrow-left bg-white text-brand-orange rounded-full p-1 text-sm"></i>
-                </button>
+                    <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1 text-sm"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -185,7 +199,7 @@
                 <!-- Text Content (Right) -->
                 <div class="w-full md:w-1/2 order-1 md:order-1 text-right">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        نحن نفهم <span class="text-brand-lightPurple">تعبك…</span>
+                        نحن نفهم <span class="text-brand-purple">تعبك…</span>
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
                         هل تبحث عن مهارة حقيقية تفتح لك باب العمل أو تساعدك على بدء مشروعك الخاص؟ في أكاديميتنا نقدم دورات تطبيقية في الطبخ، الباتسري، المحاسبة والحرف العملية، مصممة لتمنحك خبرة واضحة يمكنك استخدامها فورًا في الواقع.
@@ -216,7 +230,7 @@
                 <!-- Text Content (Left) -->
                 <div class="w-full md:w-1/2 text-right">
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                        نحن <span class="text-brand-lightPurple">الحل</span> لطموحك المهني
+                        نحن <span class="text-brand-purple">الحل</span> لطموحك المهني
                     </h2>
                     <p class="text-gray-600 leading-8 mb-4 text-justify">
                         في أكاديميتنا، نحن لا نمنحك دروساً نظرية فقط، بل نمنحك مهارة حقيقية تستطيع استخدامها في حياتك اليومية. نعرف أنك لا تحتاج إلى معلومات معقدة، بل إلى خطوات واضحة، تطبيق عملي، ونتائج ملموسة تستطيع تحويلها إلى دخل وفرصة عمل. لهذا صممنا دوراتنا في الطبخ، الباتسري، المحاسبة والحرف بأسلوب تطبيقي مباشر، يعتمد على التمرين، التجربة، والعمل الواقعي.
@@ -241,7 +255,8 @@
                 
                 <!-- Card 1 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
-                    <div class="w-16 h-16 rounded-full border-2 border-brand-lightPurple flex items-center justify-center mb-6 text-brand-purple text-2xl">
+                    <!-- Icon border updated to light purple, inside purple -->
+                    <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">تعلم أينما كنت</h3>
@@ -252,7 +267,7 @@
 
                 <!-- Card 2 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
-                    <div class="w-16 h-16 rounded-full border-2 border-brand-lightPurple flex items-center justify-center mb-6 text-brand-purple text-2xl">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">مستويات متعددة تناسب الجميع</h3>
@@ -263,7 +278,7 @@
 
                 <!-- Card 3 -->
                 <div class="feature-card bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center h-full">
-                    <div class="w-16 h-16 rounded-full border-2 border-brand-lightPurple flex items-center justify-center mb-6 text-brand-purple text-2xl">
+                    <div class="w-16 h-16 rounded-full border-2 border-[#6a4ce0] flex items-center justify-center mb-6 text-brand-purple text-2xl">
                         <i class="fa-solid fa-check"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-4">ضمان 7 أيام</h3>
@@ -301,8 +316,6 @@
                         <input type="text" id="course" placeholder="ما الدورة التي تريد تعلمها؟" class="form-input" required>
                     </div>
 
-                    <!-- Removed Country Field as requested -->
-
                     <div class="pt-4">
                         <button type="submit" class="w-full bg-[#6a4ce0] hover:bg-brand-purple text-white font-bold py-3 rounded-lg transition duration-300">
                             إرسال
@@ -313,9 +326,8 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#5840c8] text-white py-12 border-t border-white/10 relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-[#6a4ce0] to-[#4d1f95] opacity-90"></div>
+    <!-- Footer - Solid Purple #4d1f95 -->
+    <footer class="footer-bg text-white py-12 border-t border-white/10 relative">
         
         <div class="container mx-auto px-6 relative z-10 flex flex-col items-center">
             
@@ -334,17 +346,18 @@
                 Copyright © Taalim Academy.
             </div>
 
+            <!-- Social Icons (Hover updated to new Yellow) -->
             <div class="flex gap-4">
-                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-orange transition text-white">
+                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-yellow transition text-white">
                     <i class="fa-brands fa-youtube text-sm"></i>
                 </a>
-                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-orange transition text-white">
+                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-yellow transition text-white">
                     <i class="fa-brands fa-instagram text-sm"></i>
                 </a>
-                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-orange transition text-white">
+                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-yellow transition text-white">
                     <i class="fa-brands fa-tiktok text-sm"></i>
                 </a>
-                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-orange transition text-white">
+                <a href="#" class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-brand-yellow transition text-white">
                     <i class="fa-brands fa-facebook-f text-sm"></i>
                 </a>
             </div>
@@ -365,6 +378,7 @@
     <!-- JavaScript for Excel Export and Scroll -->
     <script>
         // --- Excel/CSV Export Functionality ---
+        // 4. Form Submission Logic
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent default form submission
 
@@ -375,8 +389,9 @@
             var course = document.getElementById('course').value;
 
             // Create CSV content (BOM for Arabic support)
+            // The columns match the request: Name, Email, Whatsapp, Course
             var csvContent = "\uFEFF"; 
-            csvContent += "الاسم الكامل,البريد الإلكتروني,رقم الواتساب,الدورة المطلوبة\n";
+            csvContent += "الاسم الكامل,البريد الإلكتروني,رقم الواتساب,ما الدورة التي تريد تعلمها؟\n";
             csvContent += `"${name}","${email}","${whatsapp}","${course}"\n`;
 
             // Create a blob and link to download
@@ -384,13 +399,14 @@
             var url = URL.createObjectURL(blob);
             var link = document.createElement("a");
             link.setAttribute("href", url);
-            link.setAttribute("download", "registration_data.csv");
+            // Filename that indicates this is data for the sheet
+            link.setAttribute("download", "taalim_academy_registrations.csv");
             link.style.visibility = 'hidden';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
 
-            alert("تم حفظ البيانات بنجاح في ملف إكسيل (CSV)!");
+            alert("تم حفظ البيانات! يرجى فتح ملف الإكسيل الذي تم تحميله.");
         });
 
         // --- Scroll To Top Functionality ---
