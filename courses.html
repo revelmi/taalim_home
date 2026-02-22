@@ -28,11 +28,11 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; }
         .hero-purple { background-color: #4d1f95; }
-        .footer-bg { background-color: #4d1f95; }
         .card-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
         .btn-yellow { background-color: #fbc026; color: white; transition: 0.3s; }
         .btn-yellow:hover { background-color: #e0ac20; }
 
+        /* Floating Buttons Style */
         .floating-wa {
             position: fixed; bottom: 20px; left: 20px; width: 60px; height: 60px;
             background-color: #25D366; border-radius: 50%; display: flex;
@@ -62,9 +62,9 @@
             <i class="fa-solid fa-house"></i>
         </a>
 
-        <!-- اللوغو في اليسار (صغير) -->
+        <!-- اللوغو في اليسار -->
         <a href="index.html">
-            <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-8 md:h-10 object-contain">
+            <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-10 md:h-12 brightness-0 invert object-contain">
         </a>
     </header>
 
@@ -73,10 +73,10 @@
         <div class="container mx-auto max-w-5xl">
             <div class="bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
                 
-                <!-- صورة الشيف (تم التحديث) -->
+                <!-- صورة الشيف -->
                 <div class="w-full md:w-1/2 relative h-64 md:h-auto">
-                    <!-- تم وضع الصورة الجديدة هنا -->
-                    <img src="https://imgur.com/eZZslKZ.png" 
+                    <!-- !!!!!!!! غير الرابط في السطر الأسفل برابط صورتك الجديدة !!!!!!!! -->
+                    <img src="https://img.freepik.com/free-photo/team-young-cooks-showing-thumbs-up-gesture-camera-professional-chefs-wearing-uniform-hat-doing-okay-sign-approve-advertisement-cooking-delicious-food-restaurant-kitchen_482257-20353.jpg" 
                          alt="Chefs" class="absolute inset-0 w-full h-full object-cover">
                     
                     <div class="absolute top-6 right-6 bg-white p-3 rounded-lg shadow-md">
@@ -102,15 +102,21 @@
     </section>
 
     <!-- قائمة الدورات -->
+    <!-- تمت إضافة مسافة علوية (padding-top) لتنزيل العنوان -->
     <section id="courses-list" class="pt-24 pb-16 -mt-10 relative z-10 bg-[#f9fafb]">
         <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-3xl font-bold text-center text-gray-900 mb-16">تعرّف على دوراتنا</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
+                <!-- ======================================================= -->
+                <!-- بداية طريقة إضافة دورة جديدة: انسخ من هنا إلى "نهاية الدورة" -->
+                <!-- ======================================================= -->
+                
                 <!-- الدورة 1 -->
                 <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
                     <div class="h-48 bg-gray-200 relative">
+                        <!-- صورة الدورة -->
                         <img src="https://img.freepik.com/free-photo/chef-making-ok-sign-white-background_1368-2804.jpg" class="w-full h-full object-cover" alt="Course">
                     </div>
                     <div class="p-6">
@@ -128,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- نهاية الدورة 1 -->
 
                 <!-- الدورة 2 -->
                 <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
@@ -171,7 +178,7 @@
                     </div>
                 </div>
 
-                <!-- الدورة 4 -->
+                <!-- الدورة 4 (صف جديد) -->
                 <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
                     <div class="h-48 bg-gray-200 relative">
                         <img src="https://img.freepik.com/free-photo/chef-cooking-kitchen-while-wearing-professional-attire_23-2148723275.jpg" class="w-full h-full object-cover" alt="Course">
@@ -252,43 +259,23 @@
         </div>
     </section>
 
-    <!-- الفوتر الجديد -->
-    <footer class="footer-bg text-white py-12 border-t border-white/10 text-center">
-        <div class="container mx-auto px-6 flex flex-col items-center">
-            
-            <!-- اللوغو -->
-            <div class="mb-6">
-                <img src="https://imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-10 object-contain">
+    <!-- الفوتر -->
+    <footer class="hero-purple text-white py-8 border-t border-white/10 text-center">
+        <div class="mb-4">
+            <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-8 mx-auto brightness-0 invert">
+        </div>
+        <div class="flex justify-center gap-6 text-[10px] md:text-xs font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <a href="#" class="hover:text-white">Privacy Policy</a>
+            <a href="#" class="hover:text-white">Support</a>
+            <a href="#" class="hover:text-white">Terms & Condition</a>
+        </div>
+        <div class="text-[10px] text-white/50 flex flex-col items-center gap-4">
+            <p>Copyright © Taalim Academy</p>
+            <div class="flex gap-3">
+                <a href="#" class="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#fbc026] hover:text-white transition"><i class="fa-brands fa-instagram text-xs"></i></a>
+                <a href="#" class="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#fbc026] hover:text-white transition"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                <a href="#" class="w-6 h-6 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#fbc026] hover:text-white transition"><i class="fa-brands fa-tiktok text-xs"></i></a>
             </div>
-
-            <!-- الروابط -->
-            <div class="flex flex-wrap justify-center gap-6 md:gap-8 text-xs md:text-sm font-semibold mb-6 uppercase tracking-wider text-white/90">
-                <a href="#" class="hover:text-brand-yellow transition">PRIVACY POLICY</a>
-                <a href="#" class="hover:text-brand-yellow transition">SUPPORT</a>
-                <a href="#" class="hover:text-brand-yellow transition">TERMS & CONDITION</a>
-            </div>
-
-            <!-- حقوق النشر -->
-            <div class="text-sm text-white/70 mb-8">
-                Copyright © Taalim Academy
-            </div>
-
-            <!-- أيقونات التواصل الاجتماعي -->
-            <div class="flex gap-4">
-                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-yellow hover:text-white transition text-white text-lg">
-                    <i class="fa-brands fa-instagram"></i>
-                </a>
-                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-yellow hover:text-white transition text-white text-lg">
-                    <i class="fa-brands fa-youtube"></i>
-                </a>
-                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-yellow hover:text-white transition text-white text-lg">
-                    <i class="fa-brands fa-facebook-f"></i>
-                </a>
-                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-brand-yellow hover:text-white transition text-white text-lg">
-                    <i class="fa-solid fa-globe"></i>
-                </a>
-            </div>
-
         </div>
     </footer>
 
