@@ -75,7 +75,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            /* بما أن الاتجاه RTL: اللوجو سيكون يمين، والزر يسار تلقائياً */
+            /* 
+               في تخطيط RTL:
+               العنصر الأول في الكود يظهر على اليمين.
+               العنصر الأخير في الكود يظهر على اليسار.
+            */
         }
 
         .logo img {
@@ -83,7 +87,7 @@
             width: auto;
         }
 
-        /* زر الصفحة الرئيسية الجديد */
+        /* زر الصفحة الرئيسية */
         .home-btn {
             color: #fff;
             font-size: 1.4rem;
@@ -585,6 +589,32 @@
             background-color: #1bd741;
         }
 
+        /* --- Floating WhatsApp Button Style --- */
+        .float-whatsapp-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px; /* على اليسار كما في الصورة */
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .float-whatsapp-btn:hover {
+            background-color: #20b957;
+            transform: scale(1.1);
+            color: #fff;
+        }
+
         /* --- Footer --- */
         footer {
             background-color: var(--primary-purple);
@@ -736,6 +766,15 @@
                 grid-template-columns: repeat(2, 1fr); 
                 gap: 10px;
             }
+            
+            /* تعديل مكان الزر العائم في الموبايل لكي لا يغطي المحتوى */
+            .float-whatsapp-btn {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+            }
         }
     </style>
 </head>
@@ -744,14 +783,16 @@
     <!-- Header -->
     <header>
         <div class="container navbar">
-            <!-- اللوجو -->
-            <a href="#" class="logo">
-                <img src="https://i.imgur.com/7YIt7Zx.png" alt="Taalim Academy" />
-            </a>
+            <!-- 1. ترتيب الهيدر الجديد (في RTL: الأول يمين، الثاني يسار) -->
             
-            <!-- زر الرئيسية -->
+            <!-- زر الرئيسية (سيظهر على اليمين) -->
             <a href="/" class="home-btn" title="الرئيسية">
                 <i class="fa-solid fa-house"></i>
+            </a>
+
+            <!-- اللوجو (سيظهر على اليسار) -->
+            <a href="#" class="logo">
+                <img src="https://i.imgur.com/7YIt7Zx.png" alt="Taalim Academy" />
             </a>
         </div>
     </header>
@@ -775,7 +816,8 @@
                 <div class="video-frame-container" id="videoFrame"></div>
             </div>
 
-            <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA" target="_blank" class="btn-cta">
+            <!-- 2. زر اشترك الآن تحت الفيديو (يأخذك لجدول السعر بالأسفل) -->
+            <a href="#offer-section" class="btn-cta">
                 إشترك الآن
             </a>
         </div>
@@ -970,8 +1012,8 @@
         </div>
     </section>
 
-    <!-- Offer Section -->
-    <section class="offer-section">
+    <!-- Offer Section (ID Added for Scroll) -->
+    <section class="offer-section" id="offer-section">
         <div class="container">
             <div class="offer-grid">
                 <!-- Text Column -->
@@ -1015,7 +1057,7 @@
                             </div>
                         </div>
 
-                        <!-- زر اشتراك -->
+                        <!-- 3. زر اشتراك داخل البطاقة (يبقى يرسل للواتساب) -->
                         <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA" target="_blank" class="btn-cta btn-full">
                             إشترك الآن
                         </a>
@@ -1101,6 +1143,11 @@
         <i class="fa-solid fa-chevron-up"></i>
     </div>
 
+    <!-- 4. زر واتساب العائم الجديد -->
+    <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%AA%D8%B3%D8%AC%D9%8A%D9%84%20%D9%81%D9%8A%20%D8%AF%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D9%84%D9%88%D9%8A%D8%A7%D8%AA" class="float-whatsapp-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
     <!-- Scripts -->
     <script>
         // 1. Lightbox Functionality
@@ -1149,9 +1196,9 @@
             // Hide the cover image
             cover.style.display = 'none';
             
-            // Create the iframe with YouTube embed (REPLACE VIDEO ID HERE IF NEEDED)
+            // Create the iframe
             var iframe = document.createElement('iframe');
-            // IMPORTANT: Replace 'M7398MO-oOE' with your actual YouTube Video ID
+            // IMPORTANT: Replace VIDEO ID
             iframe.src = "https://www.youtube.com/embed/M7398MO-oOE?autoplay=1&amp;rel=0&amp;modestbranding=1"; 
             iframe.width = "100%";
             iframe.height = "100%";
