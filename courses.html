@@ -28,7 +28,8 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; }
         .hero-purple { background-color: #4d1f95; }
-        .card-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        /* تأثير الظل عند تمرير الماوس */
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .btn-yellow { background-color: #fbc026; color: white; transition: 0.3s; }
         .btn-yellow:hover { background-color: #e0ac20; }
 
@@ -56,14 +57,10 @@
 
     <!-- شريط العنوان -->
     <header class="hero-purple text-white py-6 px-6 md:px-12 flex justify-between items-center">
-        <!-- أيقونة المنزل في اليمين -->
         <a href="index.html" class="text-white text-2xl hover:text-brand-yellow transition">
             <i class="fa-solid fa-house"></i>
         </a>
-
-        <!-- اللوغو في اليسار -->
         <a href="index.html">
-            <!-- تم إزالة الفلاتر وتصغير الحجم إلى h-12 -->
             <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-12 object-contain">
         </a>
     </header>
@@ -72,18 +69,12 @@
     <section class="hero-purple pb-32 pt-10 px-4">
         <div class="container mx-auto max-w-5xl">
             <div class="bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl relative">
-                
-                <!-- صورة الشيف الجديدة -->
                 <div class="w-full md:w-1/2 relative h-64 md:h-auto">
-                    <img src="https://imgur.com/eZZslKZ.png" 
-                         alt="Chefs" class="absolute inset-0 w-full h-full object-cover">
-                    
+                    <img src="https://imgur.com/eZZslKZ.png" alt="Chefs" class="absolute inset-0 w-full h-full object-cover">
                     <div class="absolute top-6 right-6 bg-white p-3 rounded-lg shadow-md">
                          <i class="fa-solid fa-heart text-[#fbc026] text-2xl"></i>
                     </div>
                 </div>
-
-                <!-- النصوص -->
                 <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-right">
                     <h1 class="text-3xl md:text-4xl font-black text-[#4d1f95] mb-4 leading-tight">
                         تعلم اليوم...<br>وابدأ مشروعك غداً
@@ -107,131 +98,216 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- الدورة 1 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/chef-making-ok-sign-white-background_1368-2804.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">دورة الباتسري</h3>
-                        <p class="text-gray-400 text-sm mb-4">تعلم فنون الحلويات من الصفر</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">251</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                            </div>
-                            <div class="font-bold text-xl text-gray-900">350 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>451 طالب</span>
-                        </div>
-                    </div>
-                </div>
+                <!-- ======================================================= -->
+                <!-- [قالب إضافة دورة جديدة] -->
+                <!-- انسخ الكود من بداية (الدورة) إلى نهايتها لإضافة دورة جديدة -->
+                <!-- ======================================================= -->
 
-                <!-- الدورة 2 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/technology-communication-icons-symbols-concept_53876-120314.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">التجارة الإلكترونية</h3>
-                        <p class="text-gray-400 text-sm mb-4">ابدأ متجرك الإلكتروني</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">98</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- الدورة 1: الباتسري -->
+                <!-- ضع رابط صفحة الهبوط الخاصة بالدورة مكان علامة # في href -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <!-- صورة الدورة -->
+                            <img src="https://img.freepik.com/free-photo/chef-making-ok-sign-white-background_1368-2804.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <!-- العنوان -->
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">دورة الباتسري</h3>
+                            <!-- الوصف -->
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">تعلم فنون الحلويات من الصفر واحتراف صناعة الكيك والحلويات الغربية.</p>
+                            
+                            <!-- التقييم وعدد النجوم -->
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(251)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <!-- السعر (الجديد والقديم) -->
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">500 درهم</span> <!-- السعر القديم -->
+                                    <span class="font-bold text-xl text-brand-purple">350 <span class="text-xs text-gray-500">درهم</span></span> <!-- السعر الجديد -->
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-gray-900">350 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>121 طالب</span>
+                            
+                            <!-- عدد الطلاب والزر -->
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>451 طالب مشترك</span>
+                                </div>
+                                <!-- الزر الأصفر -->
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- الدورة 3 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/standard-quality-control-collage-concept_23-2149595831.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">المحاسبة العملية</h3>
-                        <p class="text-gray-400 text-sm mb-4">اتقان المحاسبة</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">118</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- الدورة 2: التجارة الإلكترونية -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <img src="https://img.freepik.com/free-photo/technology-communication-icons-symbols-concept_53876-120314.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">التجارة الإلكترونية</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">ابدأ متجرك الإلكتروني وتعلم كيفية البيع أونلاين وتحقيق الأرباح.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(98)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">600 درهم</span>
+                                    <span class="font-bold text-xl text-brand-purple">350 <span class="text-xs text-gray-500">درهم</span></span>
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-gray-900">350 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>341 طالب</span>
+                            
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>121 طالب مشترك</span>
+                                </div>
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- الدورة 4 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/chef-cooking-kitchen-while-wearing-professional-attire_23-2148723275.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">الطبخ المغربي</h3>
-                        <p class="text-gray-400 text-sm mb-4">أسرار المطبخ التقليدي</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">300</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- الدورة 3: المحاسبة -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <img src="https://img.freepik.com/free-photo/standard-quality-control-collage-concept_23-2149595831.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">المحاسبة العملية</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">اتقان المحاسبة العامة والتحليل المالي للشركات والمؤسسات.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(118)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">450 درهم</span>
+                                    <span class="font-bold text-xl text-brand-purple">350 <span class="text-xs text-gray-500">درهم</span></span>
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-gray-900">400 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>500 طالب</span>
+                            
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>341 طالب مشترك</span>
+                                </div>
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- الدورة 5 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/mechanic-holding-digital-tablet_1170-1608.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">ميكانيك السيارات</h3>
-                        <p class="text-gray-400 text-sm mb-4">تشخيص وإصلاح الأعطال</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">150</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- الدورة 4: الطبخ المغربي -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <img src="https://img.freepik.com/free-photo/chef-cooking-kitchen-while-wearing-professional-attire_23-2148723275.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">الطبخ المغربي</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">أسرار المطبخ المغربي التقليدي والعصري بأيدي أمهر الطهاة.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(300)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">600 درهم</span>
+                                    <span class="font-bold text-xl text-brand-purple">400 <span class="text-xs text-gray-500">درهم</span></span>
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-gray-900">500 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>200 طالب</span>
+                            
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>500 طالب مشترك</span>
+                                </div>
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <!-- الدورة 6 -->
-                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover:-translate-y-2 transition duration-300 border border-gray-100">
-                    <div class="h-48 bg-gray-200 relative">
-                        <img src="https://img.freepik.com/free-photo/hairdresser-cutting-hair-salon_23-2148108849.jpg" class="w-full h-full object-cover" alt="Course">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">الحلاقة العصرية</h3>
-                        <p class="text-gray-400 text-sm mb-4">أساسيات القص والتسريح</p>
-                        <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
-                            <div class="flex items-center gap-1 text-[#fbc026] text-sm">
-                                <span class="text-gray-800 font-bold ml-1">80</span>
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- الدورة 5: ميكانيك السيارات -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <img src="https://img.freepik.com/free-photo/mechanic-holding-digital-tablet_1170-1608.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">ميكانيك السيارات</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">تعلم تشخيص وإصلاح أعطال السيارات والمحركات باحترافية.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(150)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">700 درهم</span>
+                                    <span class="font-bold text-xl text-brand-purple">500 <span class="text-xs text-gray-500">درهم</span></span>
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-gray-900">300 <span class="text-xs text-gray-500">درهم</span></div>
-                        </div>
-                        <div class="flex items-center text-gray-500 text-sm font-semibold">
-                            <i class="fa-solid fa-user ml-2"></i> <span>100 طالب</span>
+                            
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>200 طالب مشترك</span>
+                                </div>
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+
+                <!-- الدورة 6: الحلاقة -->
+                <a href="#" class="block group">
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover transition duration-300 h-full flex flex-col">
+                        <div class="h-56 bg-gray-200 relative overflow-hidden">
+                            <img src="https://img.freepik.com/free-photo/hairdresser-cutting-hair-salon_23-2148108849.jpg" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Course">
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">الحلاقة العصرية</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-2">احترف مهنة الحلاقة للرجال، قص الشعر وتصفيفه بأحدث الطرق.</p>
+                            
+                            <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-4">
+                                <div class="flex items-center gap-1 text-[#fbc026] text-sm">
+                                    <span class="text-gray-800 font-bold ml-1">(80)</span>
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-xs text-gray-400 line-through">400 درهم</span>
+                                    <span class="font-bold text-xl text-brand-purple">300 <span class="text-xs text-gray-500">درهم</span></span>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-auto">
+                                <div class="flex items-center text-gray-500 text-sm font-semibold mb-4">
+                                    <i class="fa-solid fa-user ml-2 text-brand-purple"></i> <span>100 طالب مشترك</span>
+                                </div>
+                                <div class="w-full bg-[#fbc026] text-white font-bold py-3 rounded-xl text-center group-hover:bg-[#e0ac20] transition shadow-md">
+                                    سجل الآن
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
 
             </div>
         </div>
@@ -254,7 +330,6 @@
     <!-- الفوتر -->
     <footer class="hero-purple text-white py-8 border-t border-white/10 text-center">
         <div class="mb-4">
-            <!-- الفوتر مطابق للصفحة الرئيسية: لوجو صغير وألوان أصلية -->
             <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-12 mx-auto object-contain">
         </div>
         <div class="flex justify-center gap-6 text-[10px] md:text-xs font-semibold uppercase tracking-wider text-white/70 mb-4">
@@ -272,7 +347,6 @@
         </div>
     </footer>
 
-    <!-- أيقونات عائمة -->
     <a href="https://wa.me/212620658518?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9" target="_blank" class="floating-wa">
         <i class="fa-brands fa-whatsapp text-white text-4xl"></i>
     </a>
