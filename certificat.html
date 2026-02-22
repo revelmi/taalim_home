@@ -50,6 +50,11 @@
             transform: translateY(-2px); 
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
         }
+        .btn-yellow:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         .btn-whatsapp {
             background-color: #25D366;
@@ -142,7 +147,7 @@
     </div>
 
     <!-- قسم التحقق من الشهادات -->
-    <main class="flex-grow bg-brand-light -mt-8 pt-16 pb-20">
+    <main class="flex-grow bg-brand-light -mt-8 pt-16 pb-20" id="flex-grow">
         <div class="container mx-auto px-4 max-w-5xl">
             
             <!-- عنوان القسم -->
@@ -164,14 +169,14 @@
                     <!-- السنة -->
                     <div class="text-right">
                         <label class="block text-gray-700 font-bold mb-2 text-sm">سنة الحصول عليها</label>
-                        <input type="number" id="yearInput" placeholder="مثال: 2026" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition text-left" dir="ltr">
+                        <input type="number" id="yearInput" placeholder="مثال: 2024" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition text-left" dir="ltr">
                     </div>
 
                     <!-- زر البحث -->
                     <div>
                         <button onclick="verifyCertificate()" class="btn-yellow w-full p-3 rounded-lg shadow-md flex justify-center items-center gap-2 text-lg">
                             <i class="fa-solid fa-magnifying-glass"></i>
-                            تحقق الآن
+                            <span id="btnText">تحقق الآن</span>
                         </button>
                     </div>
                 </div>
@@ -337,75 +342,81 @@
         <i class="fa-solid fa-chevron-up"></i>
     </div>
 
-    <!-- سكريبت التحقق (JavaScript Logic) -->
+    <!-- سكريبت التحقق (Google Sheets Integration) -->
     <script>
-        // قاعدة بيانات وهمية للتجربة (استخدم رقم: 12345 وسنة: 2024)
-        const database = [
-            {
-                certNo: "12345",
-                year: "2024",
-                name: "أحمد محمد العلوي",
-                cin: "AB123456",
-                dob: "15/05/1998",
-                place: "الدار البيضاء",
-                course: "دورة احتراف الحلويات الفرنسية",
-                mention: "ممتاز (Excellent)",
-                gradYear: "2023/2024",
-                subject: "فنون الباتيسري",
-                score: "95/100",
-                grade: "A+",
-                photo: "https://imgur.com/dyMMvd8.png"
-            },
-            {
-                certNo: "99999",
-                year: "2023",
-                name: "سارة بناني",
-                cin: "E554433",
-                dob: "20/02/1995",
-                place: "مراكش",
-                course: "كيك ديزاين متقدم",
-                mention: "جيد جداً (Très Bien)",
-                gradYear: "2022/2023",
-                subject: "تزيين الكيك",
-                score: "88/100",
-                grade: "A",
-                photo: "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
-            }
-        ];
+        // رابط التطبيق الخاص بك من Google Apps Script
+        const API_URL = "https://script.google.com/macros/s/AKfycbysiKKy4U3IxbyqG0zBtiN22_RhI9pO0WsiMWw4KgnFjZjPUN2XulxRXRg_H-TDx5gR/exec";
 
-        function verifyCertificate() {
+        async function verifyCertificate() {
             const certInput = document.getElementById('certInput').value.trim();
             const yearInput = document.getElementById('yearInput').value.trim();
             const resultSection = document.getElementById('certificate-result');
             const errorMsg = document.getElementById('error-msg');
+            const searchBtn = document.querySelector('button[onclick="verifyCertificate()"]');
+            const btnText = document.getElementById('btnText');
+            const originalIcon = searchBtn.querySelector('i');
 
-            const student = database.find(s => s.certNo === certInput && s.year === yearInput);
+            // التحقق من الحقول الفارغة
+            if(!certInput || !yearInput) {
+                alert("يرجى إدخال رقم الشهادة والسنة");
+                return;
+            }
 
-            if (student) {
-                // تعبئة البيانات
-                document.getElementById('res-reg-no').textContent = `AP.IB${student.certNo}/${student.year}`;
-                document.getElementById('res-name').textContent = student.name;
-                document.getElementById('res-cin').textContent = student.cin;
-                document.getElementById('res-dob').textContent = student.dob;
-                document.getElementById('res-place').textContent = student.place;
-                document.getElementById('res-course').textContent = student.course;
-                document.getElementById('res-mention').textContent = student.mention;
-                document.getElementById('res-year').textContent = student.gradYear;
-                document.getElementById('res-subject').textContent = student.subject;
-                document.getElementById('res-score').textContent = student.score;
-                document.getElementById('res-grade-letter').textContent = student.grade;
-                document.getElementById('res-photo').src = student.photo;
+            // تفعيل حالة التحميل (Loading State)
+            const originalBtnContent = searchBtn.innerHTML;
+            searchBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> جاري التحقق...';
+            searchBtn.disabled = true;
 
-                // إظهار النتيجة
-                resultSection.classList.remove('hidden');
-                errorMsg.classList.add('hidden');
-                
-                // الانتقال للنتيجة
-                resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                // إخفاء النتيجة وإظهار الخطأ
+            try {
+                // جلب البيانات من Google Sheet
+                const response = await fetch(`${API_URL}?certNo=${certInput}&year=${yearInput}`);
+                const jsonResponse = await response.json();
+
+                if (jsonResponse.status === "success") {
+                    const student = jsonResponse.data;
+
+                    // تعبئة البيانات في الصفحة
+                    document.getElementById('res-reg-no').textContent = `AP.IB${student.certNo}/${student.year}`;
+                    document.getElementById('res-name').textContent = student.name;
+                    document.getElementById('res-cin').textContent = student.cin;
+
+                    // معالجة تنسيق التاريخ (إزالة التوقيت إن وجد)
+                    let dob = student.dob;
+                    if(dob && dob.toString().includes("T")) {
+                        dob = dob.toString().split("T")[0];
+                    }
+                    document.getElementById('res-dob').textContent = dob;
+
+                    document.getElementById('res-place').textContent = student.place;
+                    document.getElementById('res-course').textContent = student.course;
+                    document.getElementById('res-mention').textContent = student.mention;
+                    document.getElementById('res-year').textContent = student.gradYear;
+                    document.getElementById('res-subject').textContent = student.subject;
+                    document.getElementById('res-score').textContent = student.score;
+                    document.getElementById('res-grade-letter').textContent = student.grade;
+                    document.getElementById('res-photo').src = student.photo;
+
+                    // إظهار النتيجة وإخفاء الخطأ
+                    resultSection.classList.remove('hidden');
+                    errorMsg.classList.add('hidden');
+                    
+                    // التمرير التلقائي للنتيجة
+                    resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                } else {
+                    // في حال لم يتم العثور على الطالب
+                    throw new Error("Student Not Found");
+                }
+
+            } catch (error) {
+                // إظهار رسالة الخطأ
                 resultSection.classList.add('hidden');
                 errorMsg.classList.remove('hidden');
+                console.error("Error fetching data:", error);
+            } finally {
+                // إعادة الزر لحالته الأصلية
+                searchBtn.innerHTML = originalBtnContent;
+                searchBtn.disabled = false;
             }
         }
     </script>
