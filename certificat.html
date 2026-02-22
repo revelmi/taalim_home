@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التحقق من الشهادات - Taalim Academy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Config Tailwind Colors -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            purple: '#4d1f95',
-                            yellow: '#fbc026',
-                            light: '#f3f4f6'
+                            purple: '#4c1d95', /* اللون البنفسجي الأساسي */
+                            dark: '#331454',   /* البنفسجي الغامق للفوتر */
+                            yellow: '#fbbf24', /* الأصفر */
+                            green: '#25D366',  /* أخضر الواتساب */
+                            light: '#f9fafb'
                         }
                     },
                     fontFamily: {
@@ -26,295 +35,378 @@
             }
         }
     </script>
+
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; }
-        .hero-purple { background-color: #4d1f95; }
-        .btn-yellow { background-color: #fbc026; color: #4d1f95; transition: 0.3s; font-weight: bold; }
-        .btn-yellow:hover { background-color: #e0ac20; transform: translateY(-2px); }
+        body { font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
         
-        /* تنسيقات الجدول */
-        .info-table td {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
+        /* تأثيرات إضافية */
+        .btn-yellow { 
+            background-color: #fbbf24; 
+            color: #331454; 
+            font-weight: 800; 
+            transition: all 0.3s ease;
         }
-        .info-table tr:last-child td {
-            border-bottom: none;
+        .btn-yellow:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); 
         }
-        .label-cell {
-            font-weight: 700;
-            color: #4b5563;
-            width: 30%;
-            background-color: #f9fafb;
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            transition: all 0.3s ease;
         }
-        .value-cell {
-            color: #1f2937;
-            font-weight: 600;
+        .btn-whatsapp:hover {
+            background-color: #1ebc57;
+            transform: translateY(-2px);
         }
+
+        /* الأيقونات العائمة */
+        .floating-wa {
+            position: fixed; bottom: 30px; left: 30px; 
+            width: 60px; height: 60px;
+            background-color: #25D366; border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000; color: white; font-size: 32px;
+            transition: transform 0.3s;
+        }
+        .floating-wa:hover { transform: scale(1.1); }
+
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background-color: #fbbf24; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999; cursor: pointer; color: #331454; font-size: 20px;
+            transition: all 0.3s;
+        }
+        .back-to-top:hover { transform: translateY(-3px); }
 
         /* تنسيقات الطباعة */
         @media print {
-            body * {
-                visibility: hidden;
-            }
-            #certificate-result, #certificate-result * {
-                visibility: visible;
-            }
-            #certificate-result {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                margin: 0;
-                padding: 0;
-                box-shadow: none;
-                border: none;
-            }
-            .no-print {
-                display: none !important;
-            }
-            /* لضمان ظهور الألوان في الطباعة */
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
+            body * { visibility: hidden; }
+            #certificate-result, #certificate-result * { visibility: visible; }
+            #certificate-result { position: absolute; left: 0; top: 0; width: 100%; }
+            .no-print { display: none !important; }
         }
     </style>
 </head>
-<body class="antialiased text-gray-800 flex flex-col min-h-screen">
+<body class="bg-brand-light text-gray-800 flex flex-col min-h-screen">
 
-    <!-- شريط العنوان -->
-    <header class="hero-purple text-white py-4 px-6 md:px-12 flex justify-between items-center shadow-md">
-        <a href="index.html" class="text-white text-2xl hover:text-brand-yellow transition" title="الرئيسية">
-            <i class="fa-solid fa-house"></i>
-        </a>
-        <div class="text-xl font-bold">Taalim Academy</div>
-    </header>
-
-    <!-- المحتوى الرئيسي -->
-    <main class="flex-grow container mx-auto px-4 py-10 max-w-5xl">
+    <!-- خلفية بنفسجية للجزء العلوي (الهيدر + Hero) -->
+    <div class="bg-brand-purple pb-16">
         
-        <!-- عنوان الصفحة -->
-        <div class="text-center mb-10">
-            <h1 class="text-3xl md:text-4xl font-black text-brand-purple mb-2">التحقق من صحة الشهادات</h1>
-            <p class="text-gray-500">أدخل معلومات الشهادة للتحقق من مصداقيتها وعرض التفاصيل</p>
-        </div>
+        <!-- Header -->
+        <header class="container mx-auto px-6 py-6 flex justify-between items-center">
+            <!-- أيقونة المنزل (يمين) -->
+            <a href="index.html" class="text-white text-2xl hover:text-brand-yellow transition">
+                <i class="fa-solid fa-house"></i>
+            </a>
 
-        <!-- قسم البحث -->
-        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 mb-10 text-center">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-                <div class="text-right">
-                    <label class="block text-gray-700 font-bold mb-2">رقم الشهادة (Certificate No)</label>
-                    <input type="text" id="certInput" placeholder="مثال: 12345" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition">
+            <!-- اللوجو (يسار) -->
+            <a href="index.html">
+                <img src="https://i.imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-10 md:h-12 object-contain">
+            </a>
+        </header>
+
+        <!-- Hero Section (البطاقة البيضاء) -->
+        <section class="container mx-auto px-4 mt-6">
+            <div class="bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row max-w-5xl mx-auto min-h-[350px]">
+                
+                <!-- النص (يمين) -->
+                <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center text-right order-2 md:order-1">
+                    <h1 class="text-3xl md:text-5xl font-black text-brand-purple mb-4 leading-tight">
+                        تعلم اليوم...<br>وابدأ مشروعك غداً
+                    </h1>
+                    <p class="text-gray-500 mb-8 text-lg leading-relaxed">
+                        سواء كنت مبتدئاً أو تطمح للتطوير، ستجد المسار المناسب لتصل إلى مستوى متقدم بثقة.
+                    </p>
+                    <a href="#courses-list" class="btn-yellow py-3 px-8 rounded-full w-fit flex items-center gap-2 shadow-md no-underline">
+                        <span>اختر دورتك الآن</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
                 </div>
-                <div class="text-right">
-                    <label class="block text-gray-700 font-bold mb-2">سنة الحصول عليها</label>
-                    <input type="number" id="yearInput" placeholder="مثال: 2024" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition">
-                </div>
-                <div>
-                    <button onclick="verifyCertificate()" class="btn-yellow w-full p-3 rounded-lg shadow-md flex justify-center items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                        تحقق الآن
-                    </button>
+
+                <!-- الصورة (يسار) -->
+                <div class="w-full md:w-1/2 relative h-64 md:h-auto order-1 md:order-2">
+                    <img src="https://i.imgur.com/NKvWmeW.png" alt="Students" class="absolute inset-0 w-full h-full object-cover">
+                    <!-- أيقونة القلب في الصورة -->
+                    <div class="absolute top-6 right-6 bg-white p-2 rounded-lg shadow-md">
+                         <i class="fa-solid fa-heart text-brand-yellow text-xl"></i>
+                    </div>
                 </div>
             </div>
-            <p id="error-msg" class="text-red-500 mt-4 font-bold hidden"><i class="fa-solid fa-circle-exclamation ml-2"></i>لم يتم العثور على شهادة بهذه البيانات، يرجى التحقق والمحاولة مرة أخرى.</p>
-        </div>
+        </section>
+    </div>
 
-        <!-- قسم النتيجة (مخفي افتراضياً) -->
-        <div id="certificate-result" class="hidden bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200 relative">
+    <!-- قسم التحقق من الشهادات -->
+    <main class="flex-grow bg-brand-light -mt-8 pt-16 pb-20">
+        <div class="container mx-auto px-4 max-w-5xl">
             
-            <!-- رأس الشهادة -->
-            <div class="bg-brand-light p-6 border-b border-gray-200 flex justify-between items-center">
-                <div>
-                    <h2 class="text-2xl font-black text-brand-purple">نتيجة التحقق من الدبلوم</h2>
-                    <p class="text-gray-500 text-sm mt-1">Regi No: <span id="res-reg-no" class="font-bold text-black"></span></p>
-                </div>
-                <!-- لوغو صغير للطباعة -->
-                <div class="hidden print:block text-brand-purple font-bold text-xl">Taalim Academy</div>
+            <!-- عنوان القسم -->
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-black text-brand-purple mb-2">التحقق من صحة الشهادات</h2>
+                <p class="text-gray-500">أدخل معلومات الشهادة للتحقق من مصداقيتها وعرض التفاصيل</p>
             </div>
 
-            <div class="p-6 md:p-8">
-                <!-- الشبكة الرئيسية: معلومات + صورة -->
-                <div class="flex flex-col-reverse md:flex-row gap-8 mb-8">
+            <!-- نموذج البحث (Form) -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 mb-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                     
-                    <!-- جدول المعلومات (يمين) -->
-                    <div class="w-full md:w-3/4 border border-gray-200 rounded-lg overflow-hidden">
-                        <table class="w-full info-table text-sm md:text-base">
-                            <tbody>
-                                <tr>
-                                    <td class="label-cell">الاسم الكامل</td>
-                                    <td class="value-cell" id="res-name"></td>
-                                    <td class="label-cell border-r border-gray-200">رقم البطاقة (CIN)</td>
-                                    <td class="value-cell" id="res-cin"></td>
-                                </tr>
-                                <tr>
-                                    <td class="label-cell">تاريخ الازدياد</td>
-                                    <td class="value-cell" id="res-dob"></td>
-                                    <td class="label-cell border-r border-gray-200">مكان الازدياد</td>
-                                    <td class="value-cell" id="res-place"></td>
-                                </tr>
-                                <tr>
-                                    <td class="label-cell">الدورة / التخصص</td>
-                                    <td class="value-cell text-brand-purple" id="res-course"></td>
-                                    <td class="label-cell border-r border-gray-200">التقدير (Mention)</td>
-                                    <td class="value-cell" id="res-mention"></td>
-                                </tr>
-                                <tr>
-                                    <td class="label-cell">السنة الدراسية</td>
-                                    <td class="value-cell" id="res-year"></td>
-                                    <td class="label-cell border-r border-gray-200">تاريخ التسليم</td>
-                                    <td class="value-cell" id="res-date"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- رقم الشهادة -->
+                    <div class="text-right">
+                        <label class="block text-gray-700 font-bold mb-2 text-sm">رقم الشهادة (Certificate No)</label>
+                        <input type="text" id="certInput" placeholder="مثال: 12345" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition text-left" dir="ltr">
                     </div>
 
-                    <!-- الصورة الشخصية (يسار) -->
-                    <div class="w-full md:w-1/4 flex justify-center items-start">
-                        <div class="border-4 border-gray-100 shadow-sm rounded-lg overflow-hidden w-40 h-48 md:w-full md:h-auto bg-gray-50 relative">
-                            <img id="res-photo" src="" alt="Student Photo" class="w-full h-full object-cover">
+                    <!-- السنة -->
+                    <div class="text-right">
+                        <label class="block text-gray-700 font-bold mb-2 text-sm">سنة الحصول عليها</label>
+                        <input type="number" id="yearInput" placeholder="مثال: 2024" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-purple focus:ring-1 focus:ring-brand-purple transition text-left" dir="ltr">
+                    </div>
+
+                    <!-- زر البحث -->
+                    <div>
+                        <button onclick="verifyCertificate()" class="btn-yellow w-full p-3 rounded-lg shadow-md flex justify-center items-center gap-2 text-lg">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            تحقق الآن
+                        </button>
+                    </div>
+                </div>
+                <!-- رسالة الخطأ -->
+                <div id="error-msg" class="hidden mt-4 bg-red-50 border border-red-200 text-red-600 p-3 rounded-lg text-center font-bold flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    لم يتم العثور على شهادة مطابقة لهذه البيانات.
+                </div>
+            </div>
+
+            <!-- نتيجة البحث (الشهادة) -->
+            <div id="certificate-result" class="hidden bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200">
+                
+                <!-- رأس النتيجة -->
+                <div class="bg-gray-50 p-6 border-b border-gray-200 flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-black text-brand-purple">تفاصيل الشهادة</h2>
+                        <p class="text-gray-500 text-sm mt-1">Regi No: <span id="res-reg-no" class="font-bold text-black"></span></p>
+                    </div>
+                    <div class="hidden print:block">
+                        <img src="https://i.imgur.com/7YIt7Zx.png" alt="Logo" class="h-10">
+                    </div>
+                </div>
+
+                <div class="p-6 md:p-8">
+                    <!-- تفاصيل الطالب -->
+                    <div class="flex flex-col-reverse md:flex-row gap-8 mb-8">
+                        <div class="w-full md:w-3/4">
+                            <table class="w-full text-sm md:text-base border-collapse">
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500 w-1/3">الاسم الكامل</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-name"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">رقم البطاقة (CIN)</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-cin"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">تاريخ الازدياد</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-dob"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">مكان الازدياد</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-place"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">الدورة التدريبية</td>
+                                        <td class="py-3 font-bold text-brand-purple text-lg" id="res-course"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">التقدير (Mention)</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-mention"></td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-3 font-bold text-gray-500">سنة التخرج</td>
+                                        <td class="py-3 font-bold text-gray-800" id="res-year"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="w-full md:w-1/4 flex justify-center items-start">
+                            <div class="bg-gray-100 p-1 rounded-lg border border-gray-200 shadow-sm w-40 h-48 md:w-full md:h-auto relative overflow-hidden">
+                                <img id="res-photo" src="" alt="Student" class="w-full h-full object-cover rounded-md">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- شريط كشف النقط (Grade Sheet) -->
-                <div class="mt-8 border border-gray-200 rounded-lg overflow-hidden">
-                    <!-- العنوان باللون الأخضر مثل الصورة المرفقة، أو يمكن جعله بنفسجي -->
-                    <!-- سأستخدم البنفسجي ليتماشى مع الهوية، أو الأخضر كما في طلبك "Grade Sheet" في الصورة -->
-                    <div class="bg-green-600 text-white text-center py-3 font-bold text-xl uppercase tracking-wider">
-                        كشف النقط (Grade Sheet)
-                    </div>
-                    <div class="overflow-x-auto">
+                    <!-- كشف النقط (Grade Sheet) -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden mt-6">
+                        <div class="bg-brand-green text-white text-center py-3 font-bold text-lg uppercase" style="background-color: #22c55e;">
+                            كشف النقط (Grade Sheet)
+                        </div>
                         <table class="w-full text-center">
-                            <thead class="bg-gray-50 text-gray-700 text-sm font-bold border-b border-gray-200">
+                            <thead class="bg-gray-50 text-gray-600 text-sm font-bold border-b border-gray-200">
                                 <tr>
                                     <th class="p-3 text-right">المادة (Subject)</th>
                                     <th class="p-3">النقطة (Marks)</th>
-                                    <th class="p-3">المعدل (GPA)</th>
-                                    <th class="p-3">الدرجة (Grade)</th>
+                                    <th class="p-3">GPA</th>
+                                    <th class="p-3">Grade</th>
                                 </tr>
                             </thead>
                             <tbody class="text-sm md:text-base">
-                                <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                <tr>
                                     <td class="p-4 text-right font-bold text-brand-purple" id="res-subject"></td>
                                     <td class="p-4 font-bold" id="res-score"></td>
-                                    <td class="p-4 text-gray-600">4.0 / 5.0</td> <!-- قيمة افتراضية -->
-                                    <td class="p-4 font-bold text-green-600" id="res-grade-letter">A</td>
+                                    <td class="p-4 text-gray-500">4.0 / 5.0</td>
+                                    <td class="p-4 font-bold text-green-600" id="res-grade-letter"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="p-4 bg-gray-50 text-center text-gray-400 text-xs">
-                        تم التحقق من هذه البيانات بواسطة نظام Taalim Academy الرقمي
+                    
+                    <div class="mt-8 flex justify-center gap-4 no-print">
+                        <button onclick="window.print()" class="bg-brand-purple text-white px-6 py-2 rounded-full hover:bg-purple-900 transition flex items-center gap-2">
+                            <i class="fa-solid fa-print"></i> طباعة
+                        </button>
+                        <button onclick="document.getElementById('certificate-result').classList.add('hidden')" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 transition">
+                            إغلاق
+                        </button>
                     </div>
                 </div>
-
-                <!-- أزرار التحكم -->
-                <div class="mt-8 flex justify-center gap-4 no-print">
-                    <button onclick="window.print()" class="bg-brand-purple text-white px-6 py-3 rounded-full hover:bg-purple-800 transition shadow-lg flex items-center gap-2 font-bold">
-                        <i class="fa-solid fa-print"></i>
-                        طباعة الشهادة
-                    </button>
-                    <button onclick="resetSearch()" class="bg-gray-200 text-gray-700 px-6 py-3 rounded-full hover:bg-gray-300 transition font-bold">
-                        بحث جديد
-                    </button>
-                </div>
-
             </div>
-        </div>
 
+            <!-- قسم للمزيد من المعلومات -->
+            <div class="text-center mt-20 mb-10">
+                <h3 class="text-2xl font-bold text-brand-purple mb-4">للمزيد من المعلومات</h3>
+                <p class="text-gray-500 max-w-xl mx-auto mb-6">
+                    إذا كنت تواجه أي مشكلة في عملية الدفع أو ترغب في معرفة المزيد من التفاصيل عن الدورة، لا تتردد في التواصل معنا.
+                </p>
+                <a href="https://wa.me/212620658518" target="_blank" class="btn-whatsapp px-8 py-3 rounded-full inline-flex items-center gap-2 font-bold no-underline">
+                    <i class="fa-brands fa-whatsapp text-xl"></i>
+                    أرسل على الواتساب
+                </a>
+            </div>
+
+        </div>
     </main>
 
-    <!-- تذييل الصفحة -->
-    <footer class="hero-purple text-white text-center py-4 text-sm mt-auto">
-        <p>&copy; 2024 Taalim Academy. جميع الحقوق محفوظة.</p>
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-12 border-t border-purple-900">
+        <div class="container mx-auto px-4 text-center">
+            <!-- Logo -->
+            <div class="mb-6 flex justify-center">
+                <img src="https://i.imgur.com/7YIt7Zx.png" alt="Taalim Academy" class="h-10 opacity-90">
+            </div>
+
+            <!-- Links -->
+            <div class="flex flex-wrap justify-center gap-6 mb-6 text-sm font-bold text-gray-300">
+                <a href="#" class="hover:text-white transition">TERMS & CONDITION</a>
+                <a href="#" class="hover:text-white transition">SUPPORT</a>
+                <a href="#" class="hover:text-white transition">PRIVACY POLICY</a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-gray-500 text-xs mb-6">
+                Copyright © Taalim Academy
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center gap-4">
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-sm">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-sm">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition text-sm">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
-    <!-- سكريبت التحقق -->
+    <!-- الأزرار العائمة -->
+    <!-- واتساب (يسار) -->
+    <a href="https://wa.me/212620658518" class="floating-wa" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    
+    <!-- العودة للأعلى (يمين) -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+        <i class="fa-solid fa-chevron-up"></i>
+    </div>
+
+    <!-- سكريبت التحقق (JavaScript Logic) -->
     <script>
-        // قاعدة بيانات وهمية (يمكنك إضافة المزيد من الطلاب هنا)
-        const studentsDatabase = [
+        // قاعدة بيانات وهمية للتجربة (استخدم رقم: 12345 وسنة: 2024)
+        const database = [
             {
                 certNo: "12345",
                 year: "2024",
                 name: "أحمد محمد العلوي",
                 cin: "AB123456",
                 dob: "15/05/1998",
-                placeOfBirth: "الدار البيضاء",
-                course: "احتراف الحلويات الفرنسية",
+                place: "الدار البيضاء",
+                course: "دورة احتراف الحلويات الفرنسية",
                 mention: "ممتاز (Excellent)",
                 gradYear: "2023/2024",
-                dateIssued: "20/06/2024",
-                subject: "فنون الباتيسري والديزاين",
+                subject: "فنون الباتيسري",
                 score: "95/100",
-                gradeLetter: "A+",
-                photo: "https://i.pravatar.cc/300?img=11" // صورة افتراضية
+                grade: "A+",
+                photo: "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg"
             },
             {
                 certNo: "99999",
                 year: "2023",
                 name: "سارة بناني",
-                cin: "EE554433",
+                cin: "E554433",
                 dob: "20/02/1995",
-                placeOfBirth: "مراكش",
+                place: "مراكش",
                 course: "كيك ديزاين متقدم",
                 mention: "جيد جداً (Très Bien)",
                 gradYear: "2022/2023",
-                dateIssued: "10/09/2023",
                 subject: "تزيين الكيك",
                 score: "88/100",
-                gradeLetter: "A",
-                photo: "https://i.pravatar.cc/300?img=5"
+                grade: "A",
+                photo: "https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg"
             }
         ];
 
         function verifyCertificate() {
             const certInput = document.getElementById('certInput').value.trim();
             const yearInput = document.getElementById('yearInput').value.trim();
-            const resultDiv = document.getElementById('certificate-result');
+            const resultSection = document.getElementById('certificate-result');
             const errorMsg = document.getElementById('error-msg');
 
-            // البحث في المصفوفة
-            const student = studentsDatabase.find(s => s.certNo === certInput && s.year === yearInput);
+            const student = database.find(s => s.certNo === certInput && s.year === yearInput);
 
             if (student) {
-                // ملء البيانات
+                // تعبئة البيانات
                 document.getElementById('res-reg-no').textContent = `AP.IB${student.certNo}/${student.year}`;
                 document.getElementById('res-name').textContent = student.name;
                 document.getElementById('res-cin').textContent = student.cin;
                 document.getElementById('res-dob').textContent = student.dob;
-                document.getElementById('res-place').textContent = student.placeOfBirth;
+                document.getElementById('res-place').textContent = student.place;
                 document.getElementById('res-course').textContent = student.course;
                 document.getElementById('res-mention').textContent = student.mention;
                 document.getElementById('res-year').textContent = student.gradYear;
-                document.getElementById('res-date').textContent = student.dateIssued;
-                document.getElementById('res-photo').src = student.photo;
-                
-                // بيانات الجدول السفلي
                 document.getElementById('res-subject').textContent = student.subject;
                 document.getElementById('res-score').textContent = student.score;
-                document.getElementById('res-grade-letter').textContent = student.gradeLetter;
+                document.getElementById('res-grade-letter').textContent = student.grade;
+                document.getElementById('res-photo').src = student.photo;
 
-                // إظهار النتيجة وإخفاء الخطأ
-                resultDiv.classList.remove('hidden');
+                // إظهار النتيجة
+                resultSection.classList.remove('hidden');
                 errorMsg.classList.add('hidden');
                 
-                // التمرير للأسفل لرؤية النتيجة
-                resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
+                // الانتقال للنتيجة
+                resultSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                // إظهار الخطأ وإخفاء النتيجة
-                resultDiv.classList.add('hidden');
+                // إخفاء النتيجة وإظهار الخطأ
+                resultSection.classList.add('hidden');
                 errorMsg.classList.remove('hidden');
             }
-        }
-
-        function resetSearch() {
-            document.getElementById('certInput').value = '';
-            document.getElementById('yearInput').value = '';
-            document.getElementById('certificate-result').classList.add('hidden');
-            document.getElementById('error-msg').classList.add('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
