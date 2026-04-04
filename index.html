@@ -40,6 +40,21 @@
 
         .hero-bg {
             background-color: #4d1f95; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* خلفية زخرفية */
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(251,192,38,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 1;
         }
 
         .footer-bg {
@@ -168,9 +183,133 @@
             border: 1px solid #f5c6cb;
         }
 
-        /* القائمة المنسدلة للموبايل */
+        /* ✨ القائمة المنسدلة الجديدة - من الجانب الأيمن */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         #mobileMenu {
-            transition: all 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #fbc026;
+        }
+        #mobileMenu.active {
+            right: 0;
+        }
+
+        .menu-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #4d1f95;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-close-btn:hover {
+            background-color: #f3f4f6;
+            transform: rotate(90deg);
+        }
+
+        /* ✨ Hero Image Styling */
+        .hero-image-container {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            min-height: 400px;
+        }
+
+        /* Badge decorations */
+        .hero-badge {
+            position: absolute;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 14px;
+            z-index: 20;
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #4d1f95 0%, #6a4ce0 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .badge-top-right {
+            top: -15px;
+            left: -20px;
+        }
+
+        .badge-bottom-left {
+            bottom: -10px;
+            right: -15px;
+        }
+
+        /* Floating elements */
+        .floating-element {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
         ::-webkit-scrollbar {
@@ -199,41 +338,169 @@
         <a href="index.html" class="flex items-center">
             <img src="https://imgur.com/7YIt7Zx.png" alt="Taalim Academy Logo" class="h-12 object-contain">
         </a>
-
-        <!-- القائمة المنسدلة (مخفية افتراضياً) -->
-        <div id="mobileMenu" class="hidden absolute top-full right-0 left-0 bg-white text-gray-800 shadow-xl rounded-b-2xl py-4 px-6 mx-4 mt-2 z-50 border-t-4 border-brand-yellow">
-            <nav class="flex flex-col gap-4 text-center font-bold">
-                <a href="index.html" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">الرئيسية</a>
-                <a href="courses.html" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">الدورات</a>
-                <a href="https://edu.taalimacademy.com/b-account" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">تسجيل الدخول</a>
-                <a href="certificat.html" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">التحقق من الشهادات</a>
-                <a href="#about" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">من نحن</a>
-                <a href="#contact" class="py-2 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition">اتصل بنا</a>
-            </nav>
-        </div>
-
     </header>
 
-    <section class="hero-bg text-white pt-48 pb-40 px-4 text-center relative overflow-hidden" id="home">
-        <div class="max-w-4xl mx-auto space-y-8">
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
-                تعلم… طبّق… احترف.
-            </h1>
-            <p class="text-lg md:text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed opacity-90">
-                اكتشف مجموعة دوراتنا التطبيقية في الطبخ، الباتسري، المحاسبة، والحرف المطلوبة في سوق العمل، وابدأ رحلتك نحو مهارة حقيقية تفتح لك أبواب العمل والاستقلال المهني.
-            </p>
+    <!-- ظل خلفي للقائمة -->
+    <div id="menuOverlay" class="menu-overlay"></div>
 
-            <div class="flex flex-col items-center justify-center gap-6 mt-10">
-                <a href="courses.html" class="btn-yellow font-bold py-4 px-12 rounded-full shadow-lg flex items-center gap-3 w-full md:w-auto justify-center min-w-[320px] text-xl no-underline">
-                    <span>تعرف على دوراتنا</span>
-                    <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1 text-sm"></i>
-                </a>
+    <!-- القائمة المنسدلة - من الجانب الأيمن -->
+    <div id="mobileMenu">
+        <button id="menuCloseBtn" class="menu-close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="pt-16 pb-6 px-6 border-b border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+                <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-10 object-contain">
             </div>
-            <div class="flex flex-col items-center justify-center gap-6 mt-10">
-                <a href="https://edu.taalimacademy.com/b-account" class="btn-yellow font-bold py-4 px-12 rounded-full shadow-lg flex items-center gap-3 w-full md:w-auto justify-center min-w-[320px] text-xl no-underline">
-                    <span>تسجيل الدخول</span>
-                    <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1 text-sm"></i>
-                </a>
+            <p class="text-sm text-gray-500">مرحباً بك في Taalim Academy</p>
+        </div>
+
+        <nav class="flex flex-col py-4 px-6 font-bold">
+            <!-- ✅ الرئيسية → index.html (الصفحة الحالية) -->
+            <a href="index.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-house text-brand-purple"></i>
+                <span>الرئيسية</span>
+            </a>
+            
+            <!-- ✅ الدورات → courses.html -->
+            <a href="courses.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-graduation-cap text-brand-purple"></i>
+                <span>الدورات</span>
+            </a>
+            
+            <!-- ✅ تسجيل الدخول → edu.taalimacademy.com -->
+            <a href="https://edu.taalimacademy.com/" target="_blank" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-right-to-bracket text-brand-purple"></i>
+                <span>تسجيل الدخول</span>
+            </a>
+            
+            <!-- ✅ التحقق من الشهادات → certificat.html -->
+            <a href="certificat.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-certificate text-brand-purple"></i>
+                <span>التحقق من الشهادات</span>
+            </a>
+            
+            <!-- من نحن -->
+            <a href="#about" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-users text-brand-purple"></i>
+                <span>من نحن</span>
+            </a>
+            
+            <!-- اتصل بنا -->
+            <a href="#contact" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3">
+                <i class="fa-solid fa-envelope text-brand-purple"></i>
+                <span>اتصل بنا</span>
+            </a>
+        </nav>
+
+        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gray-50 border-t border-gray-200">
+            <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <span>© 2025 Taalim Academy</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✨ Hero Section مع عنوان أصغر وصورة جديدة -->
+    <section class="hero-bg text-white pt-32 pb-20 px-4 md:px-8 lg:px-12 relative overflow-hidden" id="home">
+        <div class="container mx-auto max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[550px]">
+                
+                <!-- النص (اليمين) -->
+                <div class="space-y-6 z-10 order-2 lg:order-1">
+                    <div class="space-y-4">
+                        <!-- عنوان أصغر - سطر واحد -->
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                            تعلم… طبّق…<span class="text-[#fbc026]">احترف.</span>
+                        </h1>
+                        
+                        <p class="text-base md:text-lg text-gray-200 leading-relaxed max-w-xl">
+                            اكتشف مجموعة دوراتنا التطبيقية وابدأ رحلتك نحو مهارة حقيقية تفتح لك أبواب العمل والاستقلال المهني.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                        <!-- ✅ زر الدورات → courses.html -->
+                        <a href="courses.html" class="btn-yellow font-bold py-3 px-8 rounded-full shadow-xl flex items-center gap-2 w-full sm:w-auto justify-center text-base no-underline group">
+                            <span>تعرف على دوراتنا</span>
+                            <i class="fa-solid fa-arrow-left bg-white text-brand-yellow rounded-full p-1.5 text-xs group-hover:-translate-x-1 transition-transform duration-300"></i>
+                        </a>
+                        
+                        <!-- ✅ تسجيل الدخول → edu.taalimacademy.com -->
+                        <a href="https://edu.taalimacademy.com/" target="_blank" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 w-full sm:w-auto justify-center text-base no-underline hover:bg-white hover:text-brand-purple transition-all duration-300">
+                            <span>تسجيل الدخول</span>
+                            <i class="fa-solid fa-user text-sm"></i>
+                        </a>
+                    </div>
+
+                    <!-- Stats Row - أصغر -->
+                    <div class="flex items-center gap-6 pt-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-users text-[#fbc026] text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-lg">+5000</div>
+                                <div class="text-[11px] text-gray-300">طالب نشط</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-star text-[#fbc026] text-sm"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-lg">4.9/5</div>
+                                <div class="text-[11px] text-gray-300">تقييم الطلاب</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الصورة (اليسار) - صورة جديدة أحلى -->
+                <div class="hero-image-container order-1 lg:order-2 relative">
+                    <div class="hero-image-wrapper">
+                        <!-- صورة Online Learning/Education -->
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&auto=format&fit=crop&q=80" 
+                             alt="Online Learning" 
+                             loading="eager"
+                             onerror="this.src='https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=700&auto=format&fit=crop&q=80'">
+                    </div>
+
+                    <!-- Badge علوي -->
+                    <div class="hero-badge badge-top-right">
+                        <div class="badge-icon">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <div class="text-brand-purple text-sm">+50</div>
+                            <div class="text-gray-500 text-[11px]">دورة متاحة</div>
+                        </div>
+                    </div>
+
+                    <!-- Badge سفلي -->
+                    <div class="hero-badge badge-bottom-left">
+                        <div class="badge-icon">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <div class="text-brand-purple text-sm">معتمدة</div>
+                            <div class="text-gray-500 text-[11px]">شهادات مهنية</div>
+                        </div>
+                    </div>
+
+                    <!-- Floating decorative elements -->
+                    <div class="floating-element top-10 right-0 w-14 h-14 bg-[#fbc026] rounded-full opacity-20 blur-xl"></div>
+                    <div class="floating-element bottom-10 left-0 w-16 h-16 bg-white rounded-full opacity-10 blur-2xl" style="animation-delay: 1s;"></div>
+                    
+                    <!-- Star decoration -->
+                    <div class="absolute top-5 right-8 text-[#fbc026] text-2xl floating-element" style="animation-delay: 0.5s;">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div class="absolute bottom-8 left-8 text-white text-xl floating-element" style="animation-delay: 1.5s;">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -397,26 +664,30 @@
         // --- Mobile Menu Toggle ---
         const menuBtn = document.getElementById('menuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
 
         menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
 
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', (e) => {
-            if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
+        menuCloseBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
 
-        // +++ كود جديد: إغلاق القائمة عند النقر على أي رابط داخلها +++
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         const menuLinks = mobileMenu.querySelectorAll('a');
         menuLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                setTimeout(closeMenu, 150);
             });
         });
-        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // --- Google Sheets Connection Logic ---
         const scriptURL = 'https://script.google.com/macros/s/AKfycbzAbybazS1ugGhJwB9oT5LoZEC2ywjXl0PVyMmmJo8kmrR8iY5Vtz40wFaQofYorVfGCg/exec'; 
@@ -471,6 +742,4 @@
 
 </body>
 </html>
-
-
 
