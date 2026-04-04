@@ -28,6 +28,7 @@
     <style>
         body { font-family: 'Cairo', sans-serif; background-color: #f9fafb; scroll-behavior: smooth; }
         .hero-purple { background-color: #4d1f95; }
+        
         /* تأثير الظل عند تمرير الماوس */
         .card-hover:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .btn-yellow { background-color: #fbc026; color: white; transition: 0.3s; }
@@ -51,20 +52,143 @@
         }
         .scroll-top-btn.show { opacity: 1; visibility: visible; }
         .scroll-top-btn:hover { background-color: #e0ac20; transform: translateY(-3px); }
+
+        /* ✨ القائمة المنسدلة - من الجانب الأيمن (نفس index.html) */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            max-width: 85vw;
+            height: 100vh;
+            background-color: #ffffff;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #fbc026;
+        }
+        #mobileMenu.active {
+            right: 0;
+        }
+
+        .menu-close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #4d1f95;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-close-btn:hover {
+            background-color: #f3f4f6;
+            transform: rotate(90deg);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4d1f95;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body class="antialiased text-gray-800">
 
-    <!-- شريط العنوان -->
-    
-      <header class="hero-purple text-white py-6 px-6 md:px-12 flex justify-between items-center">
-        <a href="index.html" class="text-white text-2xl hover:text-brand-yellow transition">
-            <i class="fa-solid fa-house"></i>
-        </a>
-        <a href="index.html">
+    <!-- ✅ Header جديد - نفس index.html (مع القائمة) -->
+    <header class="hero-purple text-white py-6 px-6 md:px-12 flex justify-between items-center relative z-50" dir="rtl">
+        
+        <!-- زر القائمة (3 خطوط) -->
+        <button id="menuBtn" class="text-white text-3xl hover:text-brand-yellow transition focus:outline-none">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- اللوغو -->
+        <a href="index.html" class="flex items-center">
             <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-12 object-contain">
         </a>
     </header>
+
+    <!-- ظل خلفي للقائمة -->
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <!-- ✅ القائمة المنسدلة - من الجانب الأيمن (نفس index.html) -->
+    <div id="mobileMenu">
+        <button id="menuCloseBtn" class="menu-close-btn">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="pt-16 pb-6 px-6 border-b border-gray-100">
+            <div class="flex items-center gap-3 mb-2">
+                <img src="https://imgur.com/7YIt7Zx.png" alt="Logo" class="h-10 object-contain">
+            </div>
+            <p class="text-sm text-gray-500">مرحباً بك في Taalim Academy</p>
+        </div>
+
+        <nav class="flex flex-col py-4 px-6 font-bold">
+            <a href="index.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-house text-brand-purple"></i>
+                <span>الرئيسية</span>
+            </a>
+            <a href="courses.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-graduation-cap text-brand-purple"></i>
+                <span>الدورات</span>
+            </a>
+            <a href="https://edu.taalimacademy.com/" target="_blank" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-right-to-bracket text-brand-purple"></i>
+                <span>تسجيل الدخول</span>
+            </a>
+            <a href="certificat.html" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-certificate text-brand-purple"></i>
+                <span>التحقق من الشهادات</span>
+            </a>
+            <a href="#about" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3 border-b border-gray-50">
+                <i class="fa-solid fa-users text-brand-purple"></i>
+                <span>من نحن</span>
+            </a>
+            <a href="#contact" class="py-3 px-4 hover:text-brand-purple hover:bg-gray-50 rounded-lg transition flex items-center gap-3">
+                <i class="fa-solid fa-envelope text-brand-purple"></i>
+                <span>اتصل بنا</span>
+            </a>
+        </nav>
+
+        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gray-50 border-t border-gray-200">
+            <div class="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <span>© 2025 Taalim Academy</span>
+            </div>
+        </div>
+    </div>
 
 
     <!-- القسم الرئيسي -->
@@ -345,6 +469,35 @@
     </button>
 
     <script>
+        // --- ✨ Mobile Menu Toggle (نفس index.html) ---
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuCloseBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                setTimeout(closeMenu, 150);
+            });
+        });
+
+        // --- Scroll To Top Functionality ---
         var scrollBtn = document.getElementById("scrollTopBtn");
         window.onscroll = function() {
             if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
